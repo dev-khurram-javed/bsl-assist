@@ -1,0 +1,36 @@
+@use 'functions';
+
+// Create a generic context.
+@mixin context($selector, $body-append: null) {
+    $body: if($body-append !=null, #{body#{$body-append}
+    }
+
+    , body);
+
+#{$body} .is-root-container {
+    #{$selector} {
+        @content;
+    }
+}
+}
+
+// Create a block context.
+@mixin block($id, $body-append: null) {
+    @include context('.block-' + $id, $body-append) {
+        @content;
+    }
+}
+
+// Create a block context for Admin. Make sure to mention wp-block to load as a block asset.
+@mixin block-editor($id, $body-append: ':where(.wp-admin, .block-editor-iframe__body, :has(.wp-block))') {
+    @include context('.block-' + $id, $body-append) {
+        @content;
+    }
+}
+
+// Create a component context.
+@mixin component($id) {
+    @include context('.component-' + $id) {
+        @content;
+    }
+}

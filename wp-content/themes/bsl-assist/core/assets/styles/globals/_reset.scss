@@ -1,0 +1,210 @@
+// stylelint-disable-next-line
+#__bs_notify__ {
+    border-radius: 5px 0 0 5px !important;
+    top: 40px !important;
+}
+
+* {
+    box-sizing: border-box;
+
+    &::before,
+    &::after {
+        box-sizing: border-box;
+    }
+}
+
+.editor-styles-wrapper {
+    line-height: 1;
+}
+
+// Front-end body + admin editor "body"
+body:not(.wp-admin),
+.editor-styles-wrapper {
+    font-family: "Hind", sans-serif;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+
+    .is-root-container {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+}
+
+%reset {
+    line-height: 1;
+
+    &,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        vertical-align: baseline;
+    }
+
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+    }
+
+    ol,
+    ul {
+        list-style: none;
+    }
+
+    blockquote,
+    q {
+        quotes: none;
+
+        &::before,
+        &::after {
+            content: none;
+        }
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    button {
+        padding: 0;
+        text-align: left;
+        background: none;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    img.lazyload:not([src]) {
+        visibility: hidden;
+    }
+
+    .lazyload,
+    .lazyloading {
+        opacity: 0;
+    }
+
+    svg {
+        display: block;
+    }
+}
+
+.editor-styles-wrapper .acf-block-preview:where(:not(:has(.acf-block-fields))),
+body:where(:not(.wp-admin)) {
+    @extend %reset;
+}

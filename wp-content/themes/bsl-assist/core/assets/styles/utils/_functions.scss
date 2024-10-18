@@ -1,0 +1,95 @@
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:map';
+@use 'breakpoints' as *;
+
+// Strip the unit from a number.
+@function no-unit($number) {
+    @if type-of($number)=='number' and not unitless($number) {
+        @return math.div($number, ($number * 0 + 1));
+    }
+
+    @return $number;
+}
+
+// Convert a pixel value to rem.
+@function calculate-rem-value($px-value) {
+    $value: math.div($px-value, 16);
+
+    @return $value;
+}
+
+// Convert a list of pixel values to rem.
+@function rem($values, $return-unit: true) {
+    @if list.length($values)==1 {
+        $rem-value: calculate-rem-value($values);
+
+        @if $return-unit {
+            @return #{$rem-value}rem;
+        }
+
+        @else {
+            @return $rem-value;
+        }
+    }
+
+    $rem-values: (
+    );
+
+@for $i from 1 through list.length($values) {
+    $rem-value: rem(list.nth($values, $i));
+
+    @if $return-unit {
+        $rem-values: list.append($rem-values, #{$rem-value}rem);
+    }
+
+    @else {
+        $rem-values: list.append($rem-values, $rem-value);
+    }
+}
+
+@return $rem-values;
+}
+
+// Calculate fluidity between 2 rem values.
+@function fluid($min, $max, $min-breakpoint: 'phone-small', $max-breakpoint: 'desktop-large') {
+    // Strip units.
+    $min-value: no-unit($min);
+    $max-value: no-unit($max);
+
+    @if $min-value ==0 {
+        $min-value: 0.001;
+    }
+
+    @if $max-value ==0 {
+        $max-value: 0.001;
+    }
+
+    // Convert to rem if needed.
+    @if math.unit($min) !='rem' {
+        $min-value: calculate-rem-value($min-value);
+    }
+
+    @if math.unit($max) !='rem' {
+        $max-value: calculate-rem-value($max-value);
+    }
+
+    // Get the fluid vw values for the breakpoints.
+    $min-vw: get-breakpoint($min-breakpoint);
+    $max-vw: get-breakpoint($max-breakpoint);
+
+    // Fallback in case fluid-unit is not defined
+    $_fluid-unit: if($fluid-unit ==null, vw, $fluid-unit);
+
+    // Calculate the fluid base.
+    $fluid-base: calc(#{$min-value}rem + #{($max-value - $min-value)} * ((#{100 + $_fluid-unit} - #{$min-vw}) / #{no-unit($max-vw - $min-vw)}));
+
+    // Return result.
+    @if $min-value < $max-value {
+        @return min(#{$fluid-base}, #{$max-value}rem);
+    }
+
+    @else {
+        @return clamp(#{$max-value}rem, #{$fluid-base}, #{$min-value}rem);
+    }
+}

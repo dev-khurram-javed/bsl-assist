@@ -1,0 +1,9 @@
+@import 'globals/reset';
+
+body .is-root-container {
+    @import 'globals/wrapper';
+    @import 'globals/section-spacings';
+}
+
+// Swiper
+@import 'swiper/swiper-bundle.min'

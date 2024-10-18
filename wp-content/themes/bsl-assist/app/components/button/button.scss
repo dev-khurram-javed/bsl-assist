@@ -1,0 +1,52 @@
+@use 'util' as *;
+
+@include component('button') {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background: transparent !important;
+
+    .button-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: fluid(10, 20);
+        transition: 0.2s ease-in all;
+
+        .icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .button-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                svg {
+                    height: auto;
+                    object-position: center;
+                    object-fit: contain;
+                }
+            }
+        }
+
+        // Primary
+        &.style-primary {
+            background-color: $primary;
+            color: $white;
+            padding: rem(16) rem(16) rem(14);
+            border-radius: rem(16);
+
+            .button-text {
+                font-size: fluid(16, 20);
+                line-height: 1.1;
+                font-weight: 700;
+            }
+
+            &:hover {
+                background-color: $dark;
+            }
+        }
+    }
+}

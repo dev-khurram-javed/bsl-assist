@@ -1,0 +1,13 @@
+@use 'util' as *;
+
+$spacings: (
+    none: 0,
+    small: fluid(20, 40),
+    normal: fluid(40, 80),
+    large: fluid(50, 150)
+);
+
+@each $size, $value in $spacings {
+    @include section-spacing-generator(top, $size, $value);
+    @include section-spacing-generator(bottom, $size, $value);
+}

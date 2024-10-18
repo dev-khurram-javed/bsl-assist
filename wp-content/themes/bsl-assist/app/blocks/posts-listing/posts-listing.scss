@@ -1,0 +1,102 @@
+@use 'util' as *;
+
+@include block('posts-listing') {
+    .wrapper {
+        @include stack('v');
+
+        gap: fluid(30, 60);
+    }
+
+    .title-area {
+        @include stack('>');
+
+        justify-content: space-between;
+        align-items: center;
+        gap: rem(20);
+
+        .headline {
+            >* {
+                font-size: fluid(24, 50);
+                font-weight: 700;
+                line-height: 1;
+                color: $dark;
+            }
+        }
+    }
+
+    .posts {
+        display: grid;
+        grid-template-columns: auto;
+        gap: fluid(20, 40);
+
+        @include media('>phone') {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .post-item {
+            @include stack('v');
+
+            gap: fluid(20, 40);
+
+            .image {
+                figure {
+                    width: 100%;
+                    height: fluid(220, 420);
+
+                    @include media('>phone') {
+                        height: fluid(160, 280, 'phone');
+                    }
+
+                    .img {
+                        @include fit;
+                    }
+                }
+            }
+
+            .content {
+                @include stack('v');
+
+                gap: fluid(15, 30);
+            }
+
+            .post-title {
+                @include stack('v');
+
+                gap: fluid(10, 20);
+
+                .meta {
+                    color: $black;
+
+                    .cat,
+                    .date {
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-size: fluid(14, 16);
+                        line-height: 1;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                    }
+
+                    .cat+.date {
+                        border-left: 2px solid $black;
+                        margin-left: rem(5);
+                        padding-left: rem(5);
+                    }
+                }
+
+                .title {
+                    font-size: fluid(18, 22);
+                    line-height: 1.2;
+
+                    a {
+                        color: $black;
+                    }
+                }
+            }
+
+            .button {
+                display: inline-flex;
+            }
+        }
+    }
+}

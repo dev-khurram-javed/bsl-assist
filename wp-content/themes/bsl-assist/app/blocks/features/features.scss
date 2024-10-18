@@ -1,0 +1,86 @@
+@use 'util' as *;
+
+@include block('features') {
+    background-color: $primary;
+
+    .wrapper,
+    .heading {
+        @include stack('v');
+
+        gap: fluid(20, 80);
+    }
+
+    .headline {
+        >* {
+            font-size: fluid(32, 72);
+            font-weight: 700;
+            color: $white;
+            text-align: center;
+        }
+    }
+
+    .line {
+        width: 100%;
+        height: 1px;
+        background-color: $white;
+        margin: 0;
+        border: 0;
+        display: block;
+    }
+
+    .feats {
+        display: grid;
+        grid-template-columns: auto;
+        gap: rem(20);
+
+        @include media('>tablet') {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .col {
+            @include stack('v');
+
+            gap: fluid(20, 50);
+            background-color: $white;
+            padding: fluid(16, 32);
+            border-radius: rem(16);
+
+            .icon {
+                @include stack('>');
+
+                align-items: center;
+                justify-content: center;
+                width: rem(54);
+                height: rem(54);
+                border: 1px solid $secondary;
+                border-radius: rem(54);
+                transition: all 0.2s ease-in;
+
+                svg {
+                    width: rem(30);
+                    color: $primary;
+                    fill: $primary;
+                    transition: all 0.2s ease-in;
+                }
+            }
+
+            .content {
+                @include stack('v');
+
+                gap: fluid(16, 24);
+            }
+
+            .title {
+                font-size: fluid(20, 32);
+                font-weight: 600;
+                color: $dark;
+            }
+
+            .text {
+                font-size: fluid(14, 20);
+                line-height: 1.3;
+                color: $dark;
+            }
+        }
+    }
+}

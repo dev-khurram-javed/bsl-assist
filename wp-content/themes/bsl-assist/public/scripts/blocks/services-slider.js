@@ -1,0 +1,2 @@
+window.coreTheme.blocks("services-slider",(e=>{const r=e.querySelector(".slider-carousel");r&&new window.packages.swiper(r,{navigation:{prevEl:e.querySelector(".js-prev"),nextEl:e.querySelector(".js-next")}})}));
+//# sourceMappingURL=services-slider.js.map

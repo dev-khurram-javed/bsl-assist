@@ -1,0 +1,22 @@
+@use 'sass:map';
+
+// Use this to specify a global unit to use in fluid mixin
+$fluid-unit: vw !default;
+
+$breakpoints: (
+    'phone-small': calc(360 / 16) * 1rem,
+    'phone-medium': calc(414 / 16) * 1rem,
+    'phone': calc(768 / 16) * 1rem,
+    'tablet': calc(1024 / 16) * 1rem,
+    'tablet-wide': calc(1280 / 16) * 1rem,
+    'desktop-small': calc(1440 / 16) * 1rem,
+    'desktop-large': calc(1600 / 16) * 1rem,
+    'desktop-xlarge': calc(1920 / 16) * 1rem,
+);
+
+@forward 'include-media/dist/include-media' with ($breakpoints: $breakpoints );
+
+// Get the fluid vw value for a breakpoint.
+@function get-breakpoint($breakpoint) {
+    @return map.get($breakpoints, $breakpoint);
+}

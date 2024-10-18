@@ -1,0 +1,40 @@
+@use 'util' as *;
+
+@include component('image') {
+
+    figure {
+        display: flex;
+        position: relative;
+        flex-flow: column;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    picture {
+        display: block;
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .link {
+        @include fit;
+
+        z-index: 2;
+        text-indent: -9999px;
+    }
+
+    .img {
+        content: unset !important;
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .caption {
+        flex-shrink: 0;
+    }
+
+    &.has-overlay::after {
+        @include fit;
+    }
+}

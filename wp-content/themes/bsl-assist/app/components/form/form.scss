@@ -1,0 +1,746 @@
+@use 'util' as *;
+
+// Colors
+$placeholder-regular: $gray;
+$placeholder-light: $gray;
+$dropdown-arrow-regular: $primary;
+$dropdown-arrow-light: $primary;
+$checkbox-radio-border-regular: $gray;
+$checkbox-radio-border-light: $gray;
+
+// Spacing
+$gap-hor-max: 20;
+$gap-hor-min: 10;
+$gap-ver-max: 20;
+$gap-ver-min: 10;
+
+@include component('form') {
+    .spinner {
+        width: fluid(14, 20);
+        height: fluid(14, 20);
+        margin-bottom: rem(8);
+        border: fluid(2, 4) solid $checkbox-radio-border-regular;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .gform_ajax_spinner {
+        display: none !important;
+    }
+
+    .spinner {
+        &.skeleton {
+            display: none;
+        }
+    }
+
+    .button[type="submit"] {
+        background: none !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        display: inline-block !important;
+    }
+
+    .gfield_radio {
+        flex-direction: row;
+    }
+
+    .gform_page_footer {
+        display: flex;
+        justify-content: space-between;
+
+        &.left_label {
+            padding: rem(16) 0;
+        }
+
+        .button {
+            background: none !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            display: inline-block !important;
+            margin: 0 !important;
+
+            svg {
+                all: revert-layer !important;
+            }
+        }
+    }
+
+    .gf_progressbar {
+
+        // background: rgba(color('action.1'), 0.2) !important;
+        &_percentage {
+            //   background: color('action.1') !important;
+        }
+    }
+
+    .gf_page_steps {
+        .gf_step {
+            .gf_step_number {
+                border-width: 1px;
+                // color: color('text.1');
+            }
+
+            &.gf_step_active {
+                .gf_step_number {
+                    //   background: color('action.3');
+                    //   border-color: color('text.1');
+                }
+            }
+
+            &.gf_step_completed {
+                .gf_step_number {
+                    &::before {
+                        // background: color('action.1');
+                        border-width: 1px;
+                        // border-color: color('text.1');
+                    }
+                }
+            }
+        }
+    }
+
+    .gform {
+        &_fields {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: fluid($gap-ver-min, $gap-ver-max) fluid($gap-hor-min, $gap-hor-max);
+
+            .gfield {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: rem(8);
+                position: relative;
+                width: 100%;
+                min-width: rem(150);
+                flex-wrap: nowrap !important;
+                align-items: center;
+
+                &--width-full {
+                    flex: 100%;
+                }
+
+                &--width-half {
+                    @include media('>=tablet') {
+                        flex: min(50% - fluid($gap-hor-min, $gap-hor-max)) 1;
+                    }
+                }
+
+                &--width-third {
+                    @include media('>=tablet') {
+                        flex: min(33.333% - fluid($gap-hor-min, $gap-hor-max)) 1;
+                    }
+                }
+
+                &--width-quarter {
+                    @include media('>=phone') {
+                        flex: min(50% - fluid($gap-hor-min, $gap-hor-max)) 1;
+                    }
+
+                    @include media('>=tablet') {
+                        flex: min(25% - fluid($gap-hor-min, $gap-hor-max)) 1;
+                    }
+                }
+
+                &--type-captcha {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                &--type-time {
+                    .ginput_container {
+                        display: flex;
+                        align-items: center;
+                        justify-content: left;
+                        gap: fluid($gap-hor-min, $gap-hor-max);
+                    }
+                }
+
+                legend.gfield_label {
+                    margin: 0 0 rem(10);
+                }
+
+                &_label {
+                    //   @include composition-text('globals.label-regular');
+
+                    color: $dark;
+                    z-index: 5;
+                    display: block;
+                    margin: 0;
+                    font-weight: 400;
+
+                    abbr {
+                        text-decoration: none;
+                    }
+                }
+
+                &.hidden_label {
+                    .gfield_label {
+                        display: none;
+                    }
+                }
+
+                &.visibility_hidden {
+                    position: absolute;
+                    left: -9999px;
+                    visibility: hidden;
+                }
+
+                &_required {
+                    // color: color('text.1');
+                    font-size: fluid(14, 16);
+                    line-height: 1;
+                }
+
+                &_description {
+                    //   @include composition-text('globals.description-regular');
+
+                    margin-top: 0;
+                }
+
+                &.form-input {
+                    .gfield_label {
+                        position: relative;
+                        z-index: 2;
+                        transition: all 0.25s;
+                    }
+                }
+
+                .gform-field-label--type-sub {
+                    //   @include composition-text('globals.description-regular');
+
+                    display: block;
+                    padding: rem(6) 0;
+                    margin: 0;
+                }
+
+                input:not(.chosen-search-input, [type="file"]),
+                textarea,
+                select {
+                    //   @include composition('input.enabled-regular.input');
+                    //   @include composition-text('input.enabled-regular.text');
+
+                    position: relative;
+                    z-index: 1;
+                    width: 100%;
+                    opacity: 1;
+                    height: fluid(36, 46);
+                    transition: border 250ms ease-in;
+                    font-size: rem(16);
+                    background-color: $accent;
+                    border: 0;
+                    border-radius: rem(8);
+                    padding: rem(5) rem(15);
+
+                    &::placeholder,
+                    &.placeholder {
+                        color: $placeholder-regular;
+                    }
+
+                    &:focus {
+                        // @include composition('input.focused-regular.input');
+                        // @include composition-text('input.focused-regular.text');
+
+                        font-size: rem(16);
+                        outline: 0;
+                        // box-shadow: 0 0 0.1rem 0.1rem fade-out(token('form-fields.input-fields.focused.field.min.borderColor'), .75);
+                    }
+
+                    &:focus-visible {
+                        // box-shadow: 0 0 0.1rem 0.1rem fade-out(token('form-fields.input-fields.focused.field.min.borderColor'), .75);
+                    }
+                }
+
+                textarea {
+                    //   @include composition('textarea.height-medium');
+
+                    min-height: fluid(30, 40);
+                    resize: vertical;
+                    overflow: hidden;
+
+                    &.small {
+                        // @include composition('textarea.height-small');
+                        height: rem(60);
+                    }
+
+                    &.medium {
+                        // @include composition('textarea.height-medium');
+                        height: rem(100);
+                    }
+
+                    &.large {
+                        // @include composition('textarea.height-large');
+                        height: rem(150);
+                    }
+                }
+
+                select {
+                    cursor: pointer;
+                    appearance: none;
+                    background-image: none;
+                }
+
+                input[type='radio'],
+                input[type='checkbox'] {
+                    position: absolute;
+                    display: block;
+                    width: 0;
+                    height: 0;
+                    margin: 0;
+                    padding: 0;
+                    opacity: 0;
+                    border: 0;
+                    box-shadow: none;
+                    border: none;
+
+                    &::before {
+                        display: none !important;
+                    }
+
+                    label {
+                        // @include composition('checkbox-radio.enabled-regular.wrapper');
+                        // @include composition-text('checkbox-radio.enabled-regular.text');
+
+                        display: flex;
+                        justify-content: left;
+                        align-items: center;
+                        margin-top: fluid(5, 8);
+                        text-align: left;
+                        cursor: pointer;
+                        margin: 0;
+
+                        &::before {
+                            //   @include composition('checkbox-radio.enabled-regular.input');
+
+                            content: '';
+                            cursor: pointer;
+                        }
+                    }
+
+                    &:checked+label::before {
+                        background: $checkbox-radio-border-regular;
+                    }
+                }
+
+                input[type='radio'] {
+                    label:before {
+                        border-radius: 50%;
+                    }
+                }
+
+                .gfield_radio,
+                .gfield_checkbox {
+                    display: grid;
+                    gap: rem(10);
+                }
+
+                .ginput_container_select {
+                    .chosen-single {
+                        // @include composition('input.enabled-regular.input');
+                        // @include composition-text('input.enabled-regular.text');
+
+                        background: none;
+                        position: relative;
+                        box-shadow: none;
+                        z-index: 1;
+                        width: 100%;
+                        opacity: 1;
+                        height: fluid(36, 46);
+                        transition: border 250ms ease-in;
+                        font-size: rem(16);
+
+                        >span {
+                            line-height: inherit;
+                        }
+
+                        >div {
+                            display: none;
+                        }
+                    }
+                }
+
+                .gfield_time_ampm,
+                .address_country,
+                .ginput_container_select,
+                .ginput_card_expiration_month_container,
+                .ginput_card_expiration_year_container {
+                    position: relative;
+
+                    &::after {
+                        position: absolute;
+                        top: 50%;
+                        right: fluid(12, 18);
+                        z-index: 1;
+                        display: inline-block;
+                        width: rem(7);
+                        height: rem(7);
+                        transform: translateY(-50%) rotate(135deg);
+                        border-style: solid;
+                        border-color: $dropdown-arrow-regular;
+                        border-width: rem(1) rem(1) 0 0;
+                        content: '';
+                        vertical-align: top;
+                    }
+
+                    select {
+                        padding-right: fluid(35, 55);
+                    }
+                }
+
+                .ginput_cardinfo_right {
+                    .ginput_card_security_code {
+                        width: auto;
+                    }
+                }
+
+                .gfield_time_ampm {
+                    select {
+                        padding-right: rem(30);
+                    }
+                }
+
+                .address_country {
+                    &::after {
+                        top: fluid(18, 22);
+                    }
+                }
+
+                &_validation_message {
+                    //   @include composition-text('globals.error-regular');
+                }
+
+                &--type-time {
+                    .ginput_container {
+                        gap: 0;
+                        min-width: rem(80);
+                    }
+                }
+
+                &--type-fileupload {
+                    input {
+                        border: none;
+                        padding: 0;
+                        height: auto;
+                        background: none;
+                        box-shadow: none;
+
+                        &:focus {
+                            border: none;
+                            padding: 0;
+                            height: auto;
+                        }
+                    }
+                }
+
+                &--type-multiselect {
+                    select {
+                        @include media('<=phone') {
+                            height: auto;
+                        }
+                    }
+
+                    .chosen-container-multi {
+                        background: none;
+                        border: 1px;
+
+                        .chosen-choices {
+                            //   @include composition-text('input.enabled-regular.text');
+                            //   @include composition('input.enabled-regular.input');
+
+                            height: fluid(36, 46);
+                            padding-top: rem(10);
+                            padding-bottom: rem(10);
+                            opacity: 1;
+                            font-size: rem(16);
+                            display: flex;
+
+                            li {
+                                float: none;
+                            }
+
+                            li.search-field {
+                                input[type=text] {
+                                    height: rem(24);
+                                    margin: 0;
+                                    color: inherit !important;
+                                    background: none;
+                                }
+                            }
+
+                            li.search-choice {
+                                margin-top: 0;
+                                margin-bottom: 0;
+                                // background: color('action.1');
+                                box-shadow: none;
+                                color: #fff;
+                                border: none;
+                                padding-top: rem(5);
+                                padding-bottom: rem(5);
+                                padding-left: rem(6);
+                                font-size: rem(14);
+                                font-weight: 400;
+                                line-height: 1;
+
+                                .search-choice-close {
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &_required_legend {
+            display: none;
+        }
+
+        &_footer {
+            margin-top: fluid($gap-ver-min, $gap-ver-max);
+            padding: 0;
+        }
+
+        &_ajax_spinner {
+            vertical-align: middle;
+            margin-left: rem(10);
+        }
+
+        &_validation_errors {
+            display: none !important;
+        }
+
+        &_validation_container {
+            position: absolute !important;
+            left: -9000px;
+            display: none !important;
+        }
+
+        &_submission_error {
+            //   @include composition('globals.error-message-regular.wrapper');
+            //   @include composition-text('globals.error-message-regular.text');
+        }
+
+        &_confirmation_message {
+            //   @include composition('globals.confirmation-message-regular.wrapper');
+            //   @include composition-text('globals.confirmation-message-regular.text');
+        }
+    }
+
+    .ginput_container_address {
+        row-gap: rem(10);
+        margin-bottom: 0 !important;
+
+        .gform-grid-col {
+            margin: 0 !important;
+        }
+
+        // .gform-field-label
+        //     +composition-text('globals.description-regular')
+
+        //     display: block
+        //     margin: 0
+    }
+
+    .ginput_container_name {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: fluid($gap-ver-min, $gap-ver-max) fluid($gap-hor-min, $gap-hor-max);
+        margin: 0;
+
+        @include media('>=phone-small') {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .gform-grid-col {
+            padding: 0 !important;
+        }
+
+        .gform-field-label {
+            //   @include composition-text('globals.description-regular');
+
+            display: block;
+            margin: 0;
+        }
+
+        // .field_sublabel_below
+        //     .ginput_container_address,
+        //     .ginput_container_name
+        //         .gform-field-label
+        //             padding-bottom: 0
+
+        // .field_sublabel_above
+        //     .ginput_container_address,
+        //     .ginput_container_name
+        //         .gform-field-label
+        //             padding-top: 0
+    }
+
+    .ginput_container_consent {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+
+        input[type='radio'],
+        input[type='checkbox'] {
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            border: 0;
+
+            label {
+                // @include composition('checkbox-radio.enabled-regular.wrapper');
+                // @include composition-text('checkbox-radio.enabled-regular.text');
+
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                margin-top: fluid(5, 8);
+                text-align: left;
+                cursor: pointer;
+
+                &::before {
+                    //   @include composition('checkbox-radio.enabled-regular.input');
+
+                    content: '';
+                    cursor: pointer;
+                }
+            }
+
+            &:checked+label::before {
+                background: $checkbox-radio-border-regular;
+            }
+        }
+    }
+
+    &.style-light {
+        .spinner {
+            border-color: $checkbox-radio-border-light;
+        }
+
+        .gform {
+            &_fields {
+                .gfield {
+                    &_label {
+                        // @include composition-text('globals.label-light');
+                    }
+
+                    &_description {
+                        // @include composition-text('globals.description-light');
+                    }
+
+                    input,
+                    textarea,
+                    select {
+                        // @include composition('input.enabled-light.input');
+                        // @include composition-text('input.enabled-light.text');
+
+                        &::placeholder,
+                        &.placeholder {
+                            color: $placeholder-light;
+                        }
+
+                        &:focus {
+                            //   @include composition('input.focused-light.input');
+                            //   @include composition-text('input.focused-light.text');
+
+                            // box-shadow: 0 0 0.1rem 0.1rem fade-out(token('form-fields.input-fields.focused-light.field.min.borderColor'), .50);
+                        }
+                    }
+
+                    .gchoice {
+
+                        input[type='radio'],
+                        input[type='checkbox'] {
+                            label {
+                                // @include composition('checkbox-radio.enabled-light.wrapper');
+                                // @include composition-text('checkbox-radio.enabled-light.text');
+
+                                &::before {
+                                    //   @include composition('checkbox-radio.enabled-light.input');
+                                }
+                            }
+
+                            &:checked+label::before {
+                                background: $checkbox-radio-border-light;
+                            }
+                        }
+
+                        input[type='radio'] {
+                            label:before {
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+
+                    .ginput_container_select {
+                        &::after {
+                            border-color: $dropdown-arrow-light;
+                        }
+                    }
+
+                    &_validation_message {
+                        // @include composition-text('globals.error-light');
+                    }
+                }
+            }
+
+            &_submission_error {
+                // @include composition('globals.error-message-light.wrapper');
+                // @include composition-text('globals.error-message-light.text');
+            }
+
+            &_confirmation_message {
+                // @include composition('globals.confirmation-message-light.wrapper');
+                // @include composition-text('globals.confirmation-message-light.text');
+            }
+        }
+
+        .ginput_container_name {
+            .gform-field-label {
+                // @include composition-text('globals.description-light');
+            }
+        }
+
+        .ginput_container_consent {
+
+            input[type='radio'],
+            input[type='checkbox'] {
+                label {
+                    //   @include composition('checkbox-radio.enabled-light.wrapper');
+                    //   @include composition-text('checkbox-radio.enabled-light.text');
+
+                    &::before {
+                        // @include composition('checkbox-radio.enabled-light.input');
+                    }
+                }
+
+                &:checked+label::before {
+                    background: $checkbox-radio-border-light;
+                }
+            }
+        }
+    }
+}

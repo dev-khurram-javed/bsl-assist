@@ -1,0 +1,63 @@
+@use 'util' as *;
+
+@include block('contact-info') {
+    background-color: $light;
+
+    .wrapper {
+        padding-top: rem(50);
+        padding-bottom: rem(50);
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: auto;
+
+        gap: fluid(30, 40);
+
+        @include media('>phone') {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .info-col {
+            @include stack('v');
+
+            gap: fluid(10, 16);
+
+            &:not(:last-child) {
+                border-bottom: 1px solid $secondary;
+                padding-bottom: fluid(26, 40);
+
+                @include media('>phone') {
+                    border-bottom: none;
+                    padding-bottom: 0;
+                    border-right: 1px solid $secondary;
+                }
+            }
+
+            .title {
+                font-weight: 700;
+                color: $dark;
+                text-transform: uppercase;
+            }
+
+            .val {
+                @include stack('>');
+
+                gap: rem(12);
+                align-items: center;
+
+                .icon {
+                    svg {
+                        color: $dark;
+                        fill: $dark;
+                        height: rem(24);
+                    }
+                }
+
+                .info {
+                    color: $dark;
+                }
+            }
+        }
+    }
+}

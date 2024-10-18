@@ -16,6 +16,8 @@
 /readme.html
 /wp-*.php
 /xmlrpc.php
+sitemap.xml
+sitemap.xml.gz
 
 # Configuration
 wp-config.php
@@ -34,6 +36,35 @@ wp-config.php
 
 # htaccess
 /.htaccess
+
+# Local-WP
+local-xdebuginfo.php
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.bz2
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.tgz
+!wp-includes/**/*.gz
+
+# Logs and databases #
+######################
+*.log
+*.sql
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Thumbs.db
+._*
 
 # All plugins
 #

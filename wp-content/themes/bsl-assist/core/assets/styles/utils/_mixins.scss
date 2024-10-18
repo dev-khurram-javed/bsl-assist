@@ -1,0 +1,94 @@
+// A utility for stacking elements.
+@mixin stack($direction, $gap: -1, $gap-max: -1) {
+    display: flex;
+
+    @if $gap-max >0 {
+        gap: fluid($gap, $gap-max);
+    }
+
+    @else if $gap >0 {
+        gap: rem($gap);
+    }
+
+    @if $direction =='v' {
+        flex-flow: column;
+    }
+
+    @else if $direction =='>' {
+        flex-flow: row;
+    }
+}
+
+// A utility for applying a line limit to text
+@mixin line-clamp($lines) {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: #{$lines};
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// A utility for applying ratio to images
+@mixin ratio($width, $height) {
+    position: relative;
+    max-width: rem($width);
+    max-height: rem($height);
+    font-size: 0;
+
+    &::after {
+        display: inline-block;
+        padding-top: math.div($height, $width) * 100%;
+        width: 100%;
+        content: '';
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+// Fill the area of the parent.
+@mixin fit($fit-type: cover, $fit-position: center) {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+
+    @if $fit-position {
+        object-position: $fit-position;
+    }
+
+    @if $fit-type {
+        object-fit: $fit-type;
+    }
+}
+
+/**
+ * Generates padding classes for the section element
+ *
+ * @mixin padding-generator($direction, $size, $values)
+ * @param {string} $direction - The padding direction. It can be either "top" or "bottom".
+ * @param {string} $size - The size of the padding. It can be one of "small", "normal", "large", or "xlarge".
+ * @param {list} $values - A list of two numbers that define the range of the spacing based on the fluid value.
+ * @return {void} - This mixin doesn't return anything. It adds the generated styles to the .section class in the CSS output.
+ *
+ */
+@mixin section-spacing-generator($direction, $size, $value) {
+    @media screen and (max-width:767px) {
+        html & .spacing-phone-#{$direction}-#{$size} {
+            padding-#{$direction}: $value !important;
+        }
+    }
+
+    html & .spacing-#{$direction}-#{$size} {
+        padding-#{$direction}: $value !important;
+    }
+}
