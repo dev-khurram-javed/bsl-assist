@@ -13,23 +13,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install sshpass
-        run: sudo apt-get install -y sshpass
-
       - name: Create SSH Key File
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
           chmod 600 private_key
           ls -la private_key  # Debug: Check if the file was created correctly
 
-      - name: Test SSH Connection (Debug Step)
+      - name: Test SSH Connection (No Passphrase)
         run: |
-          sshpass -p "${{ secrets.SSH_PASSPHRASE }}" ssh -i private_key \
-          -p 18765 -o StrictHostKeyChecking=no u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com \
+          ssh -i private_key -p 18765 -o StrictHostKeyChecking=no u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com \
           'echo "SSH connection successful!"' || { echo "SSH connection failed"; exit 1; }
 
       - name: Deploy files via rsync
         run: |
-          sshpass -p "${{ secrets.SSH_PASSPHRASE }}" rsync -avz --delete-after \
+          rsync -avz --delete-after \
           -e "ssh -i private_key -p 18765 -o StrictHostKeyChecking=no" \
           ./ u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com:/home/customer/www/andyc175.sg-host.com/public_html/ || { echo "Rsync failed"; exit 1; }
