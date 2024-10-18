@@ -25,7 +25,7 @@ jobs:
       - name: Test SSH Connection (Debug Step)
         run: |
           sshpass -p "${{ secrets.SSH_PASSPHRASE }}" ssh -i private_key \
-          -p 18765 -o StrictHostKeyChecking=no abc-xyz@ssh.andyc175.sg-host.com \
+          -p 18765 -o StrictHostKeyChecking=no u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com \
           'echo "SSH connection successful!"' || { echo "SSH connection failed"; exit 1; }
 
       - name: Deploy files via rsync
