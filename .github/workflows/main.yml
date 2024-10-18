@@ -26,6 +26,6 @@ jobs:
 
       - name: Deploy files via rsync
         run: |
-          rsync -avz --delete-after \
+          rsync -avz \
           -e "ssh -i private_key -p 18765 -o StrictHostKeyChecking=no" \
           ./ u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com:/home/customer/www/andyc175.sg-host.com/public_html/ || { echo "Rsync failed"; exit 1; }
