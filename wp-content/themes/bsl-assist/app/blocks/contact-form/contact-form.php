@@ -11,7 +11,7 @@
                 component('image', $img);
             }
         ?>
-        <div class="form">
+        <div class="form-area">
             <?php
                 if(!empty(get_field('heading'))) component('headline', get_field('heading'));
                 component('form', ['form_id' => $form['variation'], 'button_label' => $form['button_label']]) 

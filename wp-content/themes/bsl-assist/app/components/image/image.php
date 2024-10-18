@@ -55,7 +55,7 @@ wp_register_component('Image', function($data) {
                 }
             ?>
         </picture>
-        <?php if (isset($data['caption'])): ?>
+        <?php if (isset($data['caption']) && !empty($data['caption'])): ?>
             <figcaption class="caption"><?= $data['caption'] ?></figcaption>
         <?php endif; ?>
     </figure>

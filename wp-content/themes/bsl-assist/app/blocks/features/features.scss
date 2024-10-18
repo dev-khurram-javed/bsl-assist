@@ -11,12 +11,10 @@
     }
 
     .headline {
-        >* {
-            font-size: fluid(32, 72);
-            font-weight: 700;
-            color: $white;
-            text-align: center;
-        }
+        font-size: fluid(32, 72);
+        font-weight: 700;
+        color: $white;
+        text-align: center;
     }
 
     .line {

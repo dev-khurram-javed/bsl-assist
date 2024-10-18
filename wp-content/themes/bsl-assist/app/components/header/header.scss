@@ -6,10 +6,8 @@ body.scroll-lock {
 }
 
 @include component('header') {
-    #header {
-        background-color: $accent;
-        position: relative;
-    }
+    background-color: $accent;
+    position: relative;
 
     .header-top {
         background-color: $primary;
@@ -96,6 +94,7 @@ body.scroll-lock {
 
                     >.dropdown {
                         opacity: 1;
+                        visibility: visible;
                     }
                 }
 
@@ -135,21 +134,24 @@ body.scroll-lock {
                 .dropdown {
                     padding: rem(10) 0 0;
                     opacity: 0;
+                    visibility: hidden;
                     transition: 0.2s ease-in all;
                     position: absolute;
                     top: 100%;
                     left: 0;
                     min-width: rem(220);
+                    z-index: 5;
 
                     ul {
-                        border: 1px solid $dark;
+                        background: $accent;
+                        overflow: hidden;
                         border-radius: rem(4);
                     }
 
                     .sub-nav-item {
 
                         &:not(:last-child) {
-                            border-bottom: 1px solid $dark;
+                            border-bottom: 1px solid $secondary;
                         }
 
                         &:hover {
@@ -226,14 +228,14 @@ body.scroll-lock {
     }
 
     .mobile-menu-toggler {
-        @include media('>tablet') {
-            display: none;
-        }
-
         @include stack('>');
 
         align-items: center;
         justify-content: flex-end;
+
+        @include media('>tablet') {
+            display: none;
+        }
 
         &.active {
             .icon {

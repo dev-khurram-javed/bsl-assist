@@ -45,11 +45,9 @@
             z-index: 2;
 
             .headline {
-                >* {
-                    text-align: center;
-                    font-size: fluid(28, 64);
-                    color: $white;
-                }
+                text-align: center;
+                font-size: fluid(28, 64);
+                color: $white;
             }
 
             .title-area {
@@ -86,7 +84,6 @@
                     .component-image {
                         @include fit;
 
-                        figure,
                         .img {
                             @include fit;
                         }

@@ -4,7 +4,7 @@ wp_register_component('Footer', function($data) {
     $copy = get_field('copyright_text', 'option');
     $social = get_field('social_media', 'option');
 ?>
-    <div id="footer">
+    <footer id="footer">
         <div class="wrapper">
             <?php if ($copy): ?>
                 <span class="copy"><?= str_replace('{year}', date('Y'), $copy); ?></span>
@@ -21,6 +21,6 @@ wp_register_component('Footer', function($data) {
                 </ul>
             <?php endif; ?>
         </div>
-    </div>
+    </footer>
 <?php
 }, []);

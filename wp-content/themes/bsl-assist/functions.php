@@ -1,6 +1,8 @@
 <?php 
 define("CORE_PATH", get_template_directory().'/core');
 define("APP_PATH", get_template_directory().'/app');
+define("PUBLIC_PATH", get_template_directory().'/public');
+define("PUBLIC_SRC", get_template_directory_uri().'/public');
 
 $components = [];
 $acf_custom_fields = [];

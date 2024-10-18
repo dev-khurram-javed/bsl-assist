@@ -56,15 +56,16 @@ wp_register_component('Video', function($data) {
 
         $video_element = str_replace(' src="', ' data-src="', $video_element);
     }
-
-    // Maybe render a cover image.
-    if ($data['cover_image']) {
-        $img = $data['cover_image'];
-        $img['max_size'] = $data['image_size'];
-        component('image', $img, 'js-cover-image');
-    }
 ?>
-    <div class="has-cover">
+    <div class="<?php if($data['cover_image']) echo 'has-cover'; ?>">
+        <?php
+            // Maybe render a cover image.
+            if ($data['cover_image']) {
+                $img = $data['cover_image'];
+                $img['max_size'] = $data['image_size'];
+                component('image', $img, 'js-cover-image');
+            }
+        ?>
         <?= $video_element; ?>
         <div class="play-button-wrapper">
             <button type="button" class="video-play-button">

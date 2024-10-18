@@ -2,13 +2,11 @@
 
 @include component('image') {
 
-    figure {
-        display: flex;
-        position: relative;
-        flex-flow: column;
-        margin: 0;
-        overflow: hidden;
-    }
+    display: flex;
+    position: relative;
+    flex-flow: column;
+    margin: 0;
+    overflow: hidden;
 
     picture {
         display: block;

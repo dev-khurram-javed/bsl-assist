@@ -30,9 +30,11 @@
                 }
             }
         }
+    }
 
-        // Primary
-        &.style-primary {
+    // Primary
+    &.style-primary {
+        .button-wrapper {
             background-color: $primary;
             color: $white;
             padding: rem(16) rem(16) rem(14);

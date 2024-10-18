@@ -22,36 +22,100 @@ function component($label, $data = [], $classes = '', $attrs = []) {
         return null;
     }
 
-    // $dom = new DOMDocument();
-	// $dom->loadHTML( $components[$label]['render'] );
-    // foreach ($dom->getElementsByTagName('*') as $element) {
-    //     print_r($element);
-    // }
-
     // Merge Data from Component
     if (!empty($data)) {
         $data = array_merge($components[$label]['data'], $data);
     }
 
+    // Enqueue Assets
+    enqueue_component_scripts($label);
+
+    // Convert to DOM
+    $dom = convert_to_DOM($components[$label]['render'], $data);
+
     $handle = 'component-' . $label;
     $classes = $handle . ' ' . $label . ' ' . $classes;
 
     // Attrs
-    $attributes = '';
-    if (!empty($attrs)) {
-        foreach ($attrs as $key => $attr) {
-            $attributes .= $key . '="' . $attr .'"';
+    $attrs['data-id'] = uniqid('component_');
+    $attrs['data-component'] = $label;
+    $attrs['class'] = $classes;
+
+    // Add Attributes
+    $html = add_attrs($dom, $attrs);
+
+    // Render compenent callback
+    echo $html;
+}
+
+// Convert to DOM
+function convert_to_DOM($callback, $data) {
+    ob_start();
+
+    $html = call_user_func($callback, $data);
+
+    if (!is_string($html)) {
+        $html = ob_get_clean();
+    } else {
+        ob_end_clean();
+    }
+
+    $dom = new DOMDocument('1.0', 'UTF-8');
+	$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'), LIBXML_NOERROR | LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+    return $dom;
+}
+
+// Add Attributes
+function add_attrs($dom, $attrs) {
+    // Bail if no DOM exists.
+    if (!isset($dom)) return;
+
+    $xpath = new DOMXPath($dom);
+    $root_elements = $xpath->query('/*');
+
+    // Bail if there are no top level elements.
+    if ($root_elements->length === 0) {
+        return;
+    }
+
+    // Throw error if there are multiple top level elements.
+    if ($root_elements->length > 1) {
+        echo 'Error: HTML must have a single root element.';
+        return;
+    }
+
+    // Get the top level element.
+    $root_element = $root_elements->item(0);
+
+    foreach ($attrs as $key => $value) {
+        // Only add the attribute if it doesn't already exist.
+        // But if it's a class attribute, append the value.
+        if ($key === 'class') {
+            $root_element->setAttribute($key, trim($value . ' ' . $root_element->getAttribute($key)));
+        } else {
+            if (!$root_element->hasAttribute($key)) {
+                $root_element->setAttribute($key, $value);
+            }
         }
     }
 
-    // Render compenent callback
-    echo '<div data-id="' . uniqid('component_') . '" data-component="' . $label . '" class="' . $classes . '" ' . $attributes . '>';
-    call_user_func($components[$label]['render'], $data);
-    echo '</div>';
+    $html = $dom->saveHTML();
+
+    return $html;
+}
+
+// Enqueue Component Scripts
+function enqueue_component_scripts($label) {
+
+    if(!$label) return;
+
+    $handle = 'component-' . $label;
 
     // Enqueue Assets
-    $css_path = get_template_directory() . '/public/styles/components/' . $label . '/' . $label . '.css';
-    $css_src = get_template_directory_uri() . '/public/styles/components/' . $label . '/' . $label . '.css';
+    $comp_css = '/styles/components/' . $label . '/' . $label . '.css';
+    $css_path = PUBLIC_PATH . $comp_css;
+    $css_src = PUBLIC_SRC . $comp_css;
 
     if (file_exists($css_path)) {
         if (!wp_style_is($handle)) {
@@ -63,8 +127,9 @@ function component($label, $data = [], $classes = '', $attrs = []) {
         });
     }
 
-    $js_path = get_template_directory() . '/public/scripts/components/' . $label . '.js';
-    $js_src = get_template_directory_uri() . '/public/scripts/components/' . $label . '.js';
+    $comp_js = '/scripts/components/' . $label . '.js';
+    $js_path = PUBLIC_PATH . $comp_js;
+    $js_src = PUBLIC_SRC . $comp_js;
 
     if (file_exists($js_path)) {
         if (!wp_script_is($handle)) {

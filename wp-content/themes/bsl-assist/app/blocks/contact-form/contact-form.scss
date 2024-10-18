@@ -17,36 +17,31 @@
 
         .image {
             width: 100%;
+            height: fluid(415, 700);
+            border-radius: rem(16);
+            overflow: hidden;
 
-            figure {
-                width: 100%;
-                height: fluid(415, 700);
-                border-radius: rem(16);
-                overflow: hidden;
+            @include media('>phone') {
+                width: fluid(340, 574, 'phone');
+                height: fluid(415, 700, 'phone');
+            }
 
-                @include media('>phone') {
-                    width: fluid(340, 574, 'phone');
-                    height: fluid(415, 700, 'phone');
-                }
-
-                .img {
-                    @include fit;
-                }
+            .img {
+                @include fit;
             }
         }
 
-        .form {
+        .form-area {
             @include stack('v');
 
             gap: fluid(20, 50);
+            flex: 1;
 
             .headline {
-                >* {
-                    font-size: fluid(26, 62);
-                    line-height: 1;
-                    font-size: 700;
-                    color: $dark;
-                }
+                font-size: fluid(26, 62);
+                line-height: 1;
+                font-size: 700;
+                color: $dark;
             }
         }
     }

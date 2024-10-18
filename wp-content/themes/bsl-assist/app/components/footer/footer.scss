@@ -1,45 +1,43 @@
 @use 'util' as *;
 
 @include component('footer') {
-    #footer {
-        background-color: $primary;
-        padding: rem(16) 0;
+    background-color: $primary;
+    padding: rem(16) 0;
 
-        .wrapper {
-            @include stack('v');
+    .wrapper {
+        @include stack('v');
 
-            justify-content: space-between;
-            align-items: center;
-            gap: rem(20);
+        justify-content: space-between;
+        align-items: center;
+        gap: rem(20);
 
-            @include media('>phone') {
-                @include stack('>');
-            }
-        }
-
-        .copy {
-            font-weight: 700;
-            color: $white;
-            text-transform: uppercase;
-        }
-
-        .social-items {
+        @include media('>phone') {
             @include stack('>');
+        }
+    }
 
-            align-items: center;
-            gap: rem(16);
+    .copy {
+        font-weight: 700;
+        color: $white;
+        text-transform: uppercase;
+    }
 
-            li {
-                a {
-                    @include stack('v');
+    .social-items {
+        @include stack('>');
 
-                    align-items: center;
-                    justify-content: center;
-                    border: 1px solid $white;
-                    width: fluid(40, 50);
-                    height: fluid(40, 50);
-                    color: $white;
-                }
+        align-items: center;
+        gap: rem(16);
+
+        li {
+            a {
+                @include stack('v');
+
+                align-items: center;
+                justify-content: center;
+                border: 1px solid $white;
+                width: fluid(40, 50);
+                height: fluid(40, 50);
+                color: $white;
             }
         }
     }

@@ -15,12 +15,10 @@
         gap: rem(20);
 
         .headline {
-            >* {
-                font-size: fluid(24, 50);
-                font-weight: 700;
-                line-height: 1;
-                color: $dark;
-            }
+            font-size: fluid(24, 50);
+            font-weight: 700;
+            line-height: 1;
+            color: $dark;
         }
     }
 
@@ -39,17 +37,15 @@
             gap: fluid(20, 40);
 
             .image {
-                figure {
-                    width: 100%;
-                    height: fluid(220, 420);
+                width: 100%;
+                height: fluid(220, 420);
 
-                    @include media('>phone') {
-                        height: fluid(160, 280, 'phone');
-                    }
+                @include media('>phone') {
+                    height: fluid(160, 280, 'phone');
+                }
 
-                    .img {
-                        @include fit;
-                    }
+                .img {
+                    @include fit;
                 }
             }
 
