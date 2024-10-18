@@ -15,7 +15,7 @@ jobs:
 
       - name: Test SSH Connection (No Passphrase)
         run: |
-          ssh -o StrictHostKeyChecking=no -i <(echo "${{ secrets.SSH_PRIVATE_KEY }}") -p 18765 u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com \
+          ssh -i <(echo '${{ secrets.SSH_PRIVATE_KEY }}') -p 18765 -o StrictHostKeyChecking=no u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com \
           'echo "SSH connection successful!"' || { echo "SSH connection failed"; exit 1; }
 
       - name: Deploy files via rsync
