@@ -22,4 +22,4 @@ jobs:
         run: |
           rsync -avz --delete-after \
           -e "ssh -p 18765 StrictHostKeyChecking=no" \
-          ./ u2709-o8dmz8qkmjz9@andyc175.sg-host.com:/home/customer/www/andyc175.sg-host.com/public_html/
+          ./ u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com:/home/customer/www/andyc175.sg-host.com/public_html/
