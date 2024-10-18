@@ -13,10 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # Store this as a GitHub secret
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Add SSH key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
+          chmod 600 private_key
+          sshpass -p "${{ secrets.SSH_PASSPHRASE }}" ssh-add private_key
 
       - name: Deploy files via rsync
         run: |
