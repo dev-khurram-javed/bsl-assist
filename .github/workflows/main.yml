@@ -20,10 +20,14 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
           chmod 600 private_key
-          sshpass -p "${{ secrets.SSH_PASSPHRASE }}" ssh-add private_key
+          # Use sshpass to add the SSH key with passphrase
+          sshpass -p "${{ secrets.SSH_PASSPHRASE }}" ssh-add private_key || { echo "Failed to add SSH key"; exit 1; }
+
+      - name: Check SSH agent
+        run: ssh-add -l  # List added SSH keys to verify
 
       - name: Deploy files via rsync
         run: |
           rsync -avz --delete-after \
           -e "ssh -p 18765 -o StrictHostKeyChecking=no" \
-          ./ u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com:/home/customer/www/andyc175.sg-host.com/public_html/
+          ./ u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com:/home/customer/www/andyc175.sg-host.com/public_html/ || { echo "Rsync failed"; exit 1; }
