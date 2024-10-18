@@ -13,13 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Start SSH Agent and Add SSH Key
+        uses: webfactory/ssh-agent@v0.8.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Test SSH Connection (No Passphrase)
         run: |
-          ssh -i <(echo '${{ secrets.SSH_PRIVATE_KEY }}') -p 18765 -o StrictHostKeyChecking=no u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com \
+          ssh -o StrictHostKeyChecking=no -p 18765 u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com \
           'echo "SSH connection successful!"' || { echo "SSH connection failed"; exit 1; }
 
       - name: Deploy files via rsync
         run: |
           rsync -avz \
-          -e "ssh -i <(echo '${{ secrets.SSH_PRIVATE_KEY }}') -p 18765 -o StrictHostKeyChecking=no" \
+          -e "ssh -p 18765 -o StrictHostKeyChecking=no" \
           ./ u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com:/home/customer/www/andyc175.sg-host.com/public_html/ || { echo "Rsync failed"; exit 1; }
