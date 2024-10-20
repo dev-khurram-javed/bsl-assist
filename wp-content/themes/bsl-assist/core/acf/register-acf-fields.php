@@ -10,19 +10,12 @@ function wp_register_acf_fields ($title, $location, $fields, $position = 'normal
 	if ( !function_exists('acf_add_local_field_group') ) return;
 
 	$register_field_group = [];
-	$group_key = [];
+
     $loc = array($location);
     
-	foreach ($loc as $and_rules) {
-		foreach ($and_rules as $rule) {
-			$group_key[] = $rule['param'];
-			$group_key[] = $rule['value'];
-		}
-	}
-
-    $g_key = implode('_', str_replace('/', '_', $group_key));
+    $g_key = wp_get_group_key($loc);
     
-    $prep_fields = prepare_fields($fields, $g_key);
+    $prep_fields = wp_prepare_fields($fields, $g_key);
 
 	$register_field_group = array(
 		'key' => $g_key,
@@ -37,6 +30,24 @@ function wp_register_acf_fields ($title, $location, $fields, $position = 'normal
 	);
 
 	acf_add_local_field_group( $register_field_group );
+}
+
+// Get Group Key
+function wp_get_group_key($loc) {
+    if (!is_array($loc)) return;
+
+    $group_key = [];
+
+    foreach ($loc as $and_rules) {
+		foreach ($and_rules as $rule) {
+			$group_key[] = $rule['param'];
+			$group_key[] = $rule['value'];
+		}
+	}
+
+    $key = implode('_', str_replace('/', '_', $group_key));
+
+    return $key;
 }
 
 // Generate Field Keys
@@ -89,7 +100,7 @@ function wp_generate_field_logic (&$fields) {
 }
 
 // Prepare Fields
-function prepare_fields ($fields, $parent) {
+function wp_prepare_fields ($fields, $parent) {
 
     if (!is_array($fields)) return;
 

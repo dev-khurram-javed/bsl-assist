@@ -1,4 +1,4 @@
-@use 'util' as *;
+@use 'config' as *;
 
 @include component('footer') {
     background-color: $primary;
@@ -38,6 +38,12 @@
                 width: fluid(40, 50);
                 height: fluid(40, 50);
                 color: $white;
+                transition: 0.2s ease-in all;
+
+                &:hover {
+                    background-color: $white;
+                    color: $primary;
+                }
             }
         }
     }

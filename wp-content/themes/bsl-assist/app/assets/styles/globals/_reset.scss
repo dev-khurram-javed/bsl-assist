@@ -1,3 +1,5 @@
+@use 'config' as *;
+
 // stylelint-disable-next-line
 #__bs_notify__ {
     border-radius: 5px 0 0 5px !important;
@@ -20,8 +22,9 @@
 // Front-end body + admin editor "body"
 body:not(.wp-admin),
 .editor-styles-wrapper {
-    font-family: "Hind", sans-serif;
-    font-size: 1rem;
+    @include type('text-base');
+
+    font-family: $font-body;
     margin: 0;
     padding: 0;
 

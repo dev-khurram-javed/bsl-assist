@@ -14,9 +14,9 @@ const actions = {
      */
     compileStyles: {
         coreStyles: () => {
-            return gulp.src('./core/assets/styles/*.scss')
+            return gulp.src(['./core/assets/styles/*.scss', './app/assets/styles/*.scss'])
                 .pipe(sourcemaps.init())
-                .pipe(sass({ outputStyle: 'compressed', includePaths: ['node_modules', 'core/assets/styles'] }).on('error', sass.logError))
+                .pipe(sass({ outputStyle: 'compressed', includePaths: ['node_modules', 'core/assets/styles', 'app/assets/styles'] }).on('error', sass.logError))
                 .pipe(sourcemaps.write('.'))
                 .pipe(gulp.dest('./public/styles'))
                 .pipe(browserSync.reload({ stream: true }));
@@ -25,7 +25,7 @@ const actions = {
         blockStyles: () => {
             return gulp.src('./app/blocks/**/*.scss')
                 .pipe(sourcemaps.init())
-                .pipe(sass({ outputStyle: 'compressed', includePaths: ['node_modules', 'core/assets/styles'] }).on('error', sass.logError))
+                .pipe(sass({ outputStyle: 'compressed', includePaths: ['node_modules', 'core/assets/styles', 'app/assets/styles'] }).on('error', sass.logError))
                 .pipe(sourcemaps.write('.'))
                 .pipe(gulp.dest('./public/styles/blocks'))
                 .pipe(browserSync.reload({ stream: true }));
@@ -34,7 +34,7 @@ const actions = {
         componentStyles: () => {
             return gulp.src('./app/components/**/*.scss')
                 .pipe(sourcemaps.init())
-                .pipe(sass({ outputStyle: 'compressed', includePaths: ['node_modules', 'core/assets/styles'] }).on('error', sass.logError))
+                .pipe(sass({ outputStyle: 'compressed', includePaths: ['node_modules', 'core/assets/styles', 'app/assets/styles'] }).on('error', sass.logError))
                 .pipe(sourcemaps.write('.'))
                 .pipe(gulp.dest('./public/styles/components'))
                 .pipe(browserSync.reload({ stream: true }));
@@ -104,7 +104,7 @@ const actions = {
     },
 
     watchFiles: done => {
-        gulp.watch('./core/assets/styles/**/*.scss', actions.compileStyles.coreStyles);
+        gulp.watch(['./core/assets/styles/**/*.scss', './app/assets/styles/**/*.scss'], actions.compileStyles.coreStyles);
         gulp.watch('./app/blocks/**/*.scss', actions.compileStyles.blockStyles);
         gulp.watch('./app/components/**/*.scss', actions.compileStyles.componentStyles);
         gulp.watch('./core/assets/scripts/*.js', actions.compileScripts.coreScripts);

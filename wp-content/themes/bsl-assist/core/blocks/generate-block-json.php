@@ -30,8 +30,10 @@ function generate_block_json ($dir, $options = []) {
         ],
     ];
 
-    $style_file_css = str_replace(' ', '-', strtolower($options['title'])) . '.css';
-    $style_file_scss = str_replace(' ', '-', strtolower($options['title'])) . '.scss';
+    $file_name = str_replace(' ', '-', strtolower($options['title']));
+
+    $style_file_css = $file_name . '.css';
+    $style_file_scss = $file_name . '.scss';
     $style_file_path = $dir . '\\' . $style_file_scss;
 
     if(file_exists($style_file_path)) {
@@ -39,7 +41,7 @@ function generate_block_json ($dir, $options = []) {
         // $config['editorStyle'] = 'file:../../../public/styles/blocks/' . basename($dir) . '/' . $style_file_css;
     }
 
-    $script_file = str_replace(' ', '-', strtolower($options['title'])) . '.js';
+    $script_file = $file_name . '.js';
     $script_file_path = $dir . '\\' . $script_file;
 
     if(file_exists($script_file_path)) {

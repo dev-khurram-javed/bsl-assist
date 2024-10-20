@@ -1,0 +1,57 @@
+@use 'sass:map';
+@use 'util' as *;
+
+$font-body: "Hind", sans-serif;
+$font-headings: "Hind", sans-serif;
+
+$typography: (
+    text-base: (font-size: fluid(14, 16),
+        line-height: 1.1,
+    ),
+    heading-2: (font-family: $font-headings,
+        font-size: fluid(25, 72),
+        font-weight: normal,
+        line-height: 1.1,
+    ),
+
+    heading-3: (font-family: $font-headings,
+        font-size: fluid(18, 50),
+        font-weight: normal,
+        line-height: 1.1,
+    ),
+
+    heading-4: (font-family: $font-headings,
+        font-size: fluid(18, 42),
+        font-weight: normal,
+        line-height: 1.1,
+    ),
+
+    heading-5: (font-family: $font-headings,
+        font-size: fluid(16, 32),
+        font-weight: normal,
+        line-height: 1.4,
+    ),
+
+    heading-6: (font-family: $font-headings,
+        font-size: fluid(10, 20),
+        font-weight: bold,
+        line-height: 1.4,
+    )
+);
+
+// Typography styles.
+@mixin type($name) {
+    @if $typography and map.has-key($typography, $name ) {
+        @each $prop, $value in map.get($typography, $name ) {
+            #{$prop}: #{$value};
+        }
+    }
+}
+
+@if ($typography ) {
+    @each $style, $_value in $typography {
+        .#{$style} {
+            @include type($style);
+        }
+    }
+}

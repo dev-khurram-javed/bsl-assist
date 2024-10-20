@@ -49,7 +49,7 @@ wp_register_component('Header', function($data) {
                     <?php if ($email): ?>
                         <span class="email link">
                             <span class="icon"><?php print_svg('email'); ?></span>
-                            <a href="tel:<?= $email; ?>"><?= $email; ?></a>
+                            <a href="mailto:<?= $email; ?>"><?= $email; ?></a>
                         </span>
                     <?php endif; ?>
                 </div>

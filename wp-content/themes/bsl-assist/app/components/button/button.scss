@@ -1,4 +1,4 @@
-@use 'util' as *;
+@use 'config' as *;
 
 @include component('button') {
     position: relative;

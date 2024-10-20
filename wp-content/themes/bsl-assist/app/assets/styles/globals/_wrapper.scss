@@ -1,9 +1,11 @@
 @use 'util' as *;
 
+$wrapper_width: 1440;
+
 .wrapper {
     margin: 0 auto;
     max-width: 100%;
     padding-left: fluid(20, 40);
     padding-right: fluid(20, 40);
-    width: rem(1440);
+    width: rem($wrapper_width);
 }

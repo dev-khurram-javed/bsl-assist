@@ -1,5 +1,6 @@
 <?php 
-    $render = function ($data) { 
+    $render = function ($data) {
+        // echo '<pre>'; print_r($data['fields']['video']); echo '</pre>';
         $bg = get_field('background');
 ?>
     <div class="wrapper">
@@ -24,10 +25,7 @@
                     ?>
                 </div>
                 <div class="video-area">
-                    <?php
-                        $video = get_field('video');
-                        component('video', get_field('video'))
-                    ?>
+                    <?php component('video', get_field('video')) ?>
                     <div class="text">
                         <?= get_field('text') ?>
                     </div>

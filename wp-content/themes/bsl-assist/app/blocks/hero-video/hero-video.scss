@@ -1,4 +1,4 @@
-@use 'util' as *;
+@use 'config' as *;
 
 @include block('hero-video') {
     position: relative;
@@ -48,6 +48,8 @@
                 text-align: center;
                 font-size: fluid(28, 64);
                 color: $white;
+
+                @include type('heading-2');
             }
 
             .title-area {
