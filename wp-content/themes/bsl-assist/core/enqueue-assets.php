@@ -2,8 +2,8 @@
 
 // Enqueue Script
 function theme_core_scripts() {
-    $core_scripts_path = get_template_directory() . '/public/scripts/core-theme.js';
-    $core_scripts_src = get_template_directory_uri() . '/public/scripts/core-theme.js';
+    $core_scripts_path = PUBLIC_PATH . '/scripts/core-theme.js';
+    $core_scripts_src = PUBLIC_SRC . '/scripts/core-theme.js';
     wp_enqueue_script('core-theme-script', $core_scripts_src, array(), filemtime($core_scripts_path), false);
 
     if (!is_admin()) {
@@ -39,14 +39,12 @@ add_action('wp_enqueue_scripts', 'google_maps_script');
  * Deregister unused wp-block-library related css.
  * @return void
  */
-function deregister_unused_block_library(): void
-{
+function deregister_unused_block_library() {
     if (!is_user_logged_in() && !is_admin()) {
         wp_dequeue_style('classic-theme-styles');
         wp_dequeue_style('wp-block-library');
     }
 }
-
 add_action('wp_enqueue_scripts', 'deregister_unused_block_library');
 
 /**

@@ -9,10 +9,8 @@ const blocks = (name, callback) => {
 }
 
 const components = (name, callback) => {
-    // for (const [name, callback] of Object.entries(_anvilEntities.components)) {
     const instances = document.querySelectorAll(`[data-component="${name}"]`);
     instances.forEach(i => callback(i));
-    // }
 }
 
 window.coreTheme = {

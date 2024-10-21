@@ -1,7 +1,5 @@
 <?php 
 
-// $acf_custom_fields = [];
-
 function register_custom_acf_field ($label, $fields) {
     global $acf_custom_fields;
 

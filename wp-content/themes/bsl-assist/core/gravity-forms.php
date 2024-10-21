@@ -40,19 +40,6 @@ function input_to_button( $button, $form ) {
             'onkeypress' => $onkeypress,
             'data-form-id' => $form['id']
         ]);
-		// component('button', [
-		// 	'link' => [
-		// 		'title' => $input_label,
-		// 	],
-		// 	'style' => $form['button_params']['style'],
-		// 	'type' => 'button'
-		// ])
-		// 	->add_attribute('id', $id)
-		// 	->add_attribute('onclick', $onclick)
-		// 	->add_attribute('onkeypress', $onkeypress)
-		// 	->add_attribute('data-form-id', $form['id'])
-		// 	->add_class($class)
-		// 	->render();
 	} else {
 		// Render Submit button
         component('button', [
@@ -62,16 +49,6 @@ function input_to_button( $button, $form ) {
             'id' => $id,
             'data-form-id' => $form['id']
         ]);
-		// component('button', [
-		// 	'link' => [
-		// 		'title' => $button_title,
-		// 	],
-		// 	'style' => $form['button_params']['style'],
-		// 	'type' => 'submit',
-		// ])
-		// 	->add_attribute('id', $id)
-		// 	->add_attribute('data-form-id', $form['id'])
-		// 	->render();
 	}
 
 	$new_button = ob_get_contents();
