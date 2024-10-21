@@ -14,7 +14,7 @@ function wp_register_component ($label, $render, $default_data = []) {
     $components[$slug]['render'] = $render;
 }
 
-function component($label, $data = [], $classes = '', $attrs = []) {
+function component($label, $data = [], $classes = '', $attrs = [], $render = true) {
     global $components;
 
     if (!is_callable($components[$label]['render'])) {
@@ -23,7 +23,7 @@ function component($label, $data = [], $classes = '', $attrs = []) {
     }
 
     // Merge Data from Component
-    if (!empty($data)) {
+    if (!empty($components[$label]['data'])) {
         $data = array_merge($components[$label]['data'], $data);
     }
 
@@ -45,7 +45,11 @@ function component($label, $data = [], $classes = '', $attrs = []) {
     $html = add_attrs($dom, $attrs);
 
     // Render compenent callback
-    echo $html;
+    if ($render) {
+        echo $html;
+    }else {
+        return $html;
+    }
 }
 
 // Convert to DOM
@@ -59,6 +63,8 @@ function convert_to_DOM($callback, $data) {
     } else {
         ob_end_clean();
     }
+
+    if (!$html) return;
 
     $dom = new DOMDocument('1.0', 'UTF-8');
 	$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'), LIBXML_NOERROR | LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);

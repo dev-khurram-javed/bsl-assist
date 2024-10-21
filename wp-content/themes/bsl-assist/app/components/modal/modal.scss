@@ -1,0 +1,85 @@
+@use 'config' as *;
+
+@include component('modal') {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 100;
+    transition: opacity 0.25s, visibility 0.25s;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    padding: fluid(60, 110) fluid(20, 40);
+
+    &.is-active {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .modal-close {
+        @include type('heading-6');
+
+        padding: rem(5) 0;
+        color: $gray;
+        border-bottom: 1px solid $gray;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    .modal-backdrop {
+        position: absolute;
+        opacity: 0.75;
+        z-index: -1;
+        inset: 0;
+        background-color: $black;
+    }
+
+    .modal-content {
+        margin: 0 auto;
+        width: rem(1000);
+        max-width: 100%;
+    }
+
+    .modal-content-wrapper:not(.is-fullscreen) {
+        margin: 0 auto;
+        width: rem(1100);
+        max-width: 100%;
+        overflow-y: auto;
+    }
+
+    &.style-default .modal-content {
+        background: $accent;
+        padding: fluid(20, 40);
+    }
+
+    video,
+    iframe {
+        width: 100%;
+    }
+
+    &.style-video {
+        .modal-close {
+            position: absolute;
+            top: rem(10);
+            right: rem(20);
+        }
+    }
+
+    &.file-type-embed {
+        .modal-content {
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 56.25%;
+
+            iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

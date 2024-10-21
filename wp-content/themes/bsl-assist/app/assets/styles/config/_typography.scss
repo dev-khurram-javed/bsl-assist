@@ -47,11 +47,3 @@ $typography: (
         }
     }
 }
-
-@if ($typography ) {
-    @each $style, $_value in $typography {
-        .#{$style} {
-            @include type($style);
-        }
-    }
-}

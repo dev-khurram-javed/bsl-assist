@@ -1,8 +1,17 @@
+@use 'config' as *;
 @import 'globals/reset';
 
 body .is-root-container {
     @import 'globals/wrapper';
     @import 'globals/section-spacings';
+
+    @if ($typography ) {
+        @each $style, $_value in $typography {
+            .#{$style} {
+                @include type($style);
+            }
+        }
+    }
 }
 
 // Swiper
