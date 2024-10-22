@@ -104,11 +104,19 @@ const actions = {
     },
 
     watchFiles: done => {
-        gulp.watch(['./core/assets/styles/**/*.scss', './app/assets/styles/**/*.scss'], actions.compileStyles.coreStyles);
+        gulp.watch(['./core/assets/styles/**/*.scss', './app/assets/styles/**/*.scss'], gulp.parallel(
+            actions.compileStyles.coreStyles,
+            actions.compileStyles.blockStyles,
+            actions.compileStyles.componentStyles
+        ));
         gulp.watch('./app/blocks/**/*.scss', actions.compileStyles.blockStyles);
         gulp.watch('./app/components/**/*.scss', actions.compileStyles.componentStyles);
         gulp.watch('./core/assets/scripts/*.js', actions.compileScripts.coreScripts);
-        gulp.watch('./app/blocks/**/*.js', actions.compileScripts.blockScripts);
+        gulp.watch('./app/blocks/**/*.js', gulp.parallel(
+            actions.compileScripts.blockScripts,
+            actions.compileScripts.blockScripts,
+            actions.compileScripts.componentScripts
+        ));
         gulp.watch('./app/components/**/*.js', actions.compileScripts.componentScripts);
         gulp.watch('./**/*.php', actions.reloadBrowser);
 

@@ -8,7 +8,7 @@ function wp_register_component ($label, $render, $default_data = []) {
 
     if (array_key_exists($label, $components)) {echo 'Component already Exists'; return;}
 
-    $slug = str_replace(' ', '_', strtolower($label));
+    $slug = get_slug($label, '_');
 
     $components[$slug]['data'] = $default_data;
     $components[$slug]['render'] = $render;

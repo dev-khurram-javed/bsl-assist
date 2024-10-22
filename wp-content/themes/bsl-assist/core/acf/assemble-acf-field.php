@@ -18,7 +18,7 @@ function wp_acf_field($label, $type, $options = [], $width = '', $class = '', $i
 
     $field_arr = [
         'label' => $label,
-        'name' => str_replace(' ', '_', strtolower($label)),
+        'name' => get_slug($label, '_'),
         'type' => $type,
         'required' => 0,
         'wrapper' => [
@@ -28,21 +28,21 @@ function wp_acf_field($label, $type, $options = [], $width = '', $class = '', $i
         ]
     ];
 
-    if (!empty($options)) {
-        $field_arr = array_merge($field_arr, $options);
-    }
-
     if ($type == 'repeater') {
         $field_arr['layout'] = 'block';
         $field_arr['button_label'] = 'Add Row';
     }
-
+    
     if ($type == 'group') {
         $field_arr['layout'] = 'block';
     }
-
+    
     if ($type == 'true_false') {
         $field_arr['ui'] = true;
+    }
+
+    if (!empty($options)) {
+        $field_arr = array_merge($field_arr, $options);
     }
 
     return $field_arr;

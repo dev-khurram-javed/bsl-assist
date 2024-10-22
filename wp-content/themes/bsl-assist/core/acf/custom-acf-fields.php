@@ -3,7 +3,7 @@
 function register_custom_acf_field ($label, $fields) {
     global $acf_custom_fields;
 
-    $label = str_replace(' ', '_', strtolower($label));
+    $label = get_slug($label, '_');
     $acf_custom_fields[$label] = $fields;
 }
 

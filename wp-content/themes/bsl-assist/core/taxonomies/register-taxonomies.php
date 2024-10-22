@@ -3,7 +3,7 @@
 function wp_register_custom_taxonomy ($label, $post_types, $config = []) {
 
     $singular = convert_to_singular($label);
-    $slug = str_replace(' ', '-', strtolower($singular));
+    $slug = get_slug($singular);
     $textdomain = 'my-theme';
 
     $labels = array(

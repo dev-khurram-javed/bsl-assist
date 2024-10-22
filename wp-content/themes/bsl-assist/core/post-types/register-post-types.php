@@ -3,7 +3,7 @@
 function wp_register_custom_post_type ($label, $icon='dashicons-images-alt2', $disable_blocks = false, $config = [], $fields = []) {
 
     $singular = convert_to_singular($label);
-    $slug = str_replace(' ', '-', strtolower($singular));
+    $slug = get_slug($singular);
     $textdomain = 'my-theme';
 
     $labels = array(

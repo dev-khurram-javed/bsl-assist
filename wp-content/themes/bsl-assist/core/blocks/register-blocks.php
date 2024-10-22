@@ -21,23 +21,23 @@ function wp_register_custom_block ($config = []) {
     $classes = (array_key_exists('classes', $config)) ? $config['classes'] : '';
 	$block_dir = dirname(debug_backtrace()[0]['file']);
 	$block_name = basename($block_dir);
+    $block_slug = get_slug($config['title']);
 
-    $render = function ($data) use ($render_html, $classes, $block_dir) {
+    $render = function ($data) use ($render_html, $classes, $block_dir, $block_slug) {
 
         if(!empty(get_fields())) {
             $data['fields'] = get_fields();
         }
 
         $wrap_tag = 'section';
-        $block = str_replace(' ', '-', strtolower($data['title']));
-        $block_classes = 'block-' . $block . ' ' . $block;
+        $block_classes = 'block-' . $block_slug . ' ' . $block_slug;
 
         $block_classes .= ($classes) ? ' ' . $classes : '';
 
         if (isset($data['data']['is_preview'])) {
             echo render_preview_image($block_dir);
         }else {
-            echo sprintf('<%s data-block-id="%s" data-block="%s" class="block %s">', $wrap_tag, $data['id'], $block, $block_classes);
+            echo sprintf('<%s data-block-id="%s" data-block="%s" class="block %s">', $wrap_tag, $data['id'], $block_slug, $block_classes);
             $render_html($data);
             echo sprintf('</%s>', $wrap_tag);
         }
@@ -46,7 +46,7 @@ function wp_register_custom_block ($config = []) {
     };
 
     generate_block_json($block_dir, [
-        'name' => 'hammer-blocks/' . str_replace(' ', '-', strtolower($config['title'])),
+        'name' => 'hammer-blocks/' . $block_slug,
         'title' => $config['title'],
         'description' => (array_key_exists('description', $config)) ? $config['description'] : '',
         'icon' => (array_key_exists('icon', $config)) ? $config['icon'] : 'button'
@@ -57,7 +57,7 @@ function wp_register_custom_block ($config = []) {
             array (
                 'param' => 'block',
                 'operator' => '==',
-                'value' => 'hammer-blocks/' . $block_name,
+                'value' => 'hammer-blocks/' . $block_slug,
             ),
         );
 

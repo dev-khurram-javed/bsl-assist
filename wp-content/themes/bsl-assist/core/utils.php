@@ -17,6 +17,13 @@ $icon_list = [
     'whatsapp' => 'Whatsapp'
 ];
 
+// Generate Slug
+function get_slug($str, $rep_str = '-') {
+    if (!$str) return;
+
+    return str_replace(' ', $rep_str, strtolower($str));
+}
+
 function convert_to_singular ($label) {
     // Handle -ies to -y (e.g., "categories" to "category")
     if (substr($label, -3) === 'ies') {

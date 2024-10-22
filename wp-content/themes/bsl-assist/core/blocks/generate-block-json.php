@@ -30,7 +30,7 @@ function generate_block_json ($dir, $options = []) {
         ],
     ];
 
-    $file_name = str_replace(' ', '-', strtolower($options['title']));
+    $file_name = get_slug($options['title']);
 
     $style_file_css = $file_name . '.css';
     $style_file_scss = $file_name . '.scss';

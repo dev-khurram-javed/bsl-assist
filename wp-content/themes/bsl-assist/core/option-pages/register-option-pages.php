@@ -4,7 +4,7 @@ function register_option_page ($label, $fields = [], $config = []) {
 
     if (!function_exists('acf_add_options_page')) return;
 
-    $slug = str_replace(' ', '-', strtolower($label));
+    $slug = get_slug($label);
 
     $args = [
         'capability' => 'manage_options',
