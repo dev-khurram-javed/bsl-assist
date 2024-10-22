@@ -36,6 +36,7 @@ $fields = [
 
 wp_register_custom_block([
     'title' => 'Contact Info',
+    'icon' => 'ellipsis',
     'description' => '',
     'fields' => $fields,
     'render_html' => $render

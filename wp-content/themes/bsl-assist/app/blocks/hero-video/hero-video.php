@@ -46,6 +46,7 @@ $fields = [
 
 wp_register_custom_block([
     'title' => 'Hero Video',
+    'icon' => 'align-full-width',
     'description' => '',
     'fields' => $fields,
     'render_html' => $render

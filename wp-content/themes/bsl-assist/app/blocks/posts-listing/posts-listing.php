@@ -86,6 +86,7 @@ $fields = [
 
 wp_register_custom_block([
     'title' => 'Posts Listing',
+    'icon' => 'slides',
     'description' => '',
     'fields' => $fields,
     'render_html' => $render,

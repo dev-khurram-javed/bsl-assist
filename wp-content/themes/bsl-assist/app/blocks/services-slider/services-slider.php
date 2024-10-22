@@ -132,6 +132,7 @@ $fields = [
 
 wp_register_custom_block([
     'title' => 'Services Slider',
+    'icon' => 'slides',
     'description' => '',
     'fields' => $fields,
     'render_html' => $render,

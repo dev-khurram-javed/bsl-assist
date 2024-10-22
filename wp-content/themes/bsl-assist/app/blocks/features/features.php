@@ -48,6 +48,7 @@ $fields = [
 
 wp_register_custom_block([
     'title' => 'Features',
+    'icon' => 'editor-ol',
     'description' => '',
     'fields' => $fields,
     'render_html' => $render,
