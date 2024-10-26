@@ -13,7 +13,7 @@ if ($temp) {
 }else {
     global $wp_query;
     $wp_query->set_404();
-    return;
+    // return;
 }
 
 get_footer();

@@ -9,11 +9,9 @@ function wp_register_acf_fields ($title, $location, $fields, $position = 'normal
     
 	if ( !function_exists('acf_add_local_field_group') ) return;
 
-	$register_field_group = [];
-
     $loc = array($location);
     
-    $g_key = wp_get_group_key($loc);
+    $g_key = wp_get_group_key($loc, $title);
     
     $prep_fields = wp_prepare_fields($fields, $g_key);
 
@@ -33,8 +31,8 @@ function wp_register_acf_fields ($title, $location, $fields, $position = 'normal
 }
 
 // Get Group Key
-function wp_get_group_key($loc) {
-    if (!is_array($loc)) return;
+function wp_get_group_key($loc, $title) {
+    if (!is_array($loc) || !$title) return;
 
     $group_key = [];
 
@@ -44,6 +42,11 @@ function wp_get_group_key($loc) {
 			$group_key[] = $rule['value'];
 		}
 	}
+
+    // Diffrentiate field groups if multiple groups register for same post.
+    if (str_starts_with( $group_key[0], 'post' )) {
+        $group_key[] = get_slug($title, '_');
+    }
 
     $key = implode('_', str_replace('/', '_', $group_key));
 

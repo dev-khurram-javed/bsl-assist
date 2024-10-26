@@ -21,6 +21,8 @@ $icon_list = [
 function get_slug($str, $rep_str = '-') {
     if (!$str) return;
 
+    // Remove all the Special Charachters
+    $str = preg_replace('/[^A-Za-z0-9 ]/', '', $str);
     return str_replace(' ', $rep_str, strtolower($str));
 }
 
@@ -31,7 +33,7 @@ function convert_to_singular ($label) {
     }
 
     // Checks 's' and converts it to '' (e.g., "Books" to "Book")
-    elseif (substr($label, -1) === 's') {
+    elseif (substr($label, -1) === 's' && $label != 'News') {
         return substr($label, 0, -1);
     }
 

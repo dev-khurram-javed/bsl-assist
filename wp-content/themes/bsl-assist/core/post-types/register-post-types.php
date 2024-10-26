@@ -1,6 +1,6 @@
 <?php
 
-function wp_register_custom_post_type ($label, $icon='dashicons-images-alt2', $disable_blocks = false, $config = [], $fields = []) {
+function wp_register_custom_post_type ($label, $icon='images-alt2', $fields = [], $config = [], $disable_blocks = false) {
 
     $singular = convert_to_singular($label);
     $slug = get_slug($singular);
@@ -36,8 +36,8 @@ function wp_register_custom_post_type ($label, $icon='dashicons-images-alt2', $d
         'capability_type'    => 'post',
         'has_archive'        => true,
         'hierarchical'       => false,
-        'menu_icon'			 => $icon,
-        'menu_position'      => 50,
+        'menu_icon'			 => 'dashicons-' . $icon,
+        'menu_position'      => 50, 
         'supports'           => ['title', 'thumbnail', 'editor', 'excerpt', 'author'],
     );
 

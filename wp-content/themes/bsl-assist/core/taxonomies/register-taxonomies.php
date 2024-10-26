@@ -1,9 +1,9 @@
 <?php
 
-function wp_register_custom_taxonomy ($label, $post_types, $config = []) {
+function wp_register_custom_taxonomy ($label, $post_types, $fields = [], $config = []) {
 
     $singular = convert_to_singular($label);
-    $slug = get_slug($singular);
+    $slug = (array_key_exists('slug', $config)) ? $config['slug'] : get_slug($singular);
     $textdomain = 'my-theme';
 
     $labels = array(
@@ -34,4 +34,16 @@ function wp_register_custom_taxonomy ($label, $post_types, $config = []) {
     $config_arr = array_merge($args, $config);
 
     register_taxonomy($slug, $post_types, $config_arr);
+
+    if(!empty($fields)) {
+        $loc = array(
+            array(
+                'param' => 'taxonomy',
+                'operator' => '==',
+                'value' => $slug
+            )
+        );
+
+        wp_register_acf_fields('Details', $loc, $fields);
+    }
 }

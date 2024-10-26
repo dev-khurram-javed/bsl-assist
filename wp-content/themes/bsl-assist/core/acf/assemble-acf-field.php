@@ -1,5 +1,7 @@
 <?php
 
+// TODO: Add Option for Ref/Alias
+
 // Assemble ACF field array
 function wp_acf_field($label, $type, $options = [], $width = '', $class = '', $id = '') {
     if (!$label || !$type) return;
@@ -16,9 +18,11 @@ function wp_acf_field($label, $type, $options = [], $width = '', $class = '', $i
         return $field_arr;
     }
 
+    $slug_str = (array_key_exists('ref', $options)) ? $options['ref'] : $label;
+
     $field_arr = [
         'label' => $label,
-        'name' => get_slug($label, '_'),
+        'name' => get_slug($slug_str, '_'),
         'type' => $type,
         'required' => 0,
         'wrapper' => [

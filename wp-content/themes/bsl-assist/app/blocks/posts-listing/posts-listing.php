@@ -64,7 +64,7 @@ $fields = [
         'default_value' => 'auto'
     ]),
     wp_acf_field('Automatic', 'message', [
-        'message' => 'Block will be Automatically populated with latest 3 <a href="' . home_url() . '/wp-admin/edit.php">Posts</a>',
+        'message' => 'Block will be Automatically populated with latest 3 <a href="' . home_url() . '/wp-admin/edit.php?post_type=news">News</a>',
         'show_if' => [
             'field' => 'query_type',
             'operator' => '==',
@@ -72,7 +72,7 @@ $fields = [
         ]
     ]),
     wp_acf_field('Posts', 'relationship', [
-        'post_type' => 'post',
+        'post_type' => 'news',
         'filters' => ['search', 'taxonomy'],
         'min' => 1,
         'max' => 3,

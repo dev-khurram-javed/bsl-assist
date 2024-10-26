@@ -8,7 +8,9 @@ foreach (wp_get_nav_menus() as $key => $menu) {
 }
 
 // Parent Page
-register_option_page('Theme Settings');
+register_option_page('Site Options', [], [
+    'position' => '100'
+]);
 
 // Sub Pages
 register_option_page('Default Pages', [
@@ -16,14 +18,15 @@ register_option_page('Default Pages', [
         'required' => 1,
         'sub_fields' => [
             wp_acf_field('404 (Not Found)', 'post_object', [
-                'post_type' => 'page',
+                'ref' => '404',
+                'post_type' => 'page'
             ]),
             wp_acf_field('Search', 'post_object', [
                 'post_type' => 'page',
             ])
         ]
     ])
-], [ 'parent' => 'theme-settings' ]);
+], [ 'parent' => 'site-options' ]);
 
 // Register Header Options
 register_option_page('Header', [
@@ -45,7 +48,7 @@ register_option_page('Header', [
             ], '50')
         ]
     ])
-], [ 'parent' => 'theme-settings' ]);
+], [ 'parent' => 'site-options' ]);
 
 // Register Footer Options
 register_option_page('Footer', [
@@ -72,4 +75,4 @@ register_option_page('Footer', [
         'instructions' => 'Use <code>{year}</code> to show the current year.',
         'default_value' => '© {year} Company Name'
     ])
-], [ 'parent' => 'theme-settings' ]);
+], [ 'parent' => 'site-options' ]);
