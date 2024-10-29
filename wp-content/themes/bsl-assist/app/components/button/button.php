@@ -1,7 +1,8 @@
 <?php
 
 wp_register_component('Button', function($data) {
-    // echo '<pre>'; print_r($data); echo '</pre>';
+    if (empty($data['link'])) return;
+
     $tag_name = $data['type'] === 'link' ? 'a' : 'button';
 
     $attr = 'class="style-' . $data['style'] .'"';

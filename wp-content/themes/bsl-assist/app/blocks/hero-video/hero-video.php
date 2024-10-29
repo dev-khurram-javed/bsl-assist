@@ -1,6 +1,5 @@
 <?php 
     $render = function ($data) {
-        // echo '<pre>'; print_r($data['fields']['video']); echo '</pre>';
         $bg = get_field('background');
 ?>
     <div class="wrapper">

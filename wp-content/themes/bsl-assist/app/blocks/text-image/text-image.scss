@@ -1,0 +1,74 @@
+@use 'config' as *;
+
+@include block('text-image') {
+    position: relative;
+    overflow: hidden;
+
+    &.bg-dark {
+        background-color: $accent;
+    }
+
+    .wrapper {
+        @include stack('v');
+
+        gap: fluid(20, 60);
+        align-items: center;
+        flex-direction: column-reverse;
+
+        &.img-left {
+            @include media('>phone') {
+                flex-direction: row-reverse;
+            }
+        }
+
+        @include media('>phone') {
+            @include stack('>');
+        }
+    }
+
+    .content {
+        @include stack('v');
+
+        gap: fluid(15, 40);
+
+        .button {
+            display: inline-flex;
+        }
+
+        .headline {
+            font-size: fluid(20, 36);
+            color: $dark;
+        }
+
+        .desc {
+            @include stack('v');
+
+            gap: rem(16);
+
+            p {
+                font-size: fluid(16, 20);
+                line-height: 1.3;
+                color: $dark;
+            }
+        }
+    }
+
+    .img-wrap {
+        width: 100%;
+    }
+
+    .image {
+        width: 100%;
+        height: fluid(260, 480);
+        border-radius: rem(16);
+
+        @include media('>phone') {
+            width: fluid(380, 640, 'phone');
+            height: fluid(238, 400, 'phone');
+        }
+
+        .img {
+            @include fit;
+        }
+    }
+}

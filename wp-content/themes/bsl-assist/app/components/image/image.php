@@ -65,7 +65,7 @@ wp_register_component('Image', function($data) {
     'url' => '',
     'alt' => '',
     'label' => false,
-    'max_size' => 'thumbnail',
+    'max_size' => 'full',
     'post_id' => false,
     'has_overlay' => false,
     'lazyload' => true,

@@ -18,11 +18,11 @@ function wp_acf_field($label, $type, $options = [], $width = '', $class = '', $i
         return $field_arr;
     }
 
-    $slug_str = (array_key_exists('ref', $options)) ? $options['ref'] : $label;
+    $slug = (array_key_exists('ref', $options)) ? $options['ref'] : get_slug($label, '_');
 
     $field_arr = [
         'label' => $label,
-        'name' => get_slug($slug_str, '_'),
+        'name' => $slug,
         'type' => $type,
         'required' => 0,
         'wrapper' => [
@@ -43,6 +43,11 @@ function wp_acf_field($label, $type, $options = [], $width = '', $class = '', $i
     
     if ($type == 'true_false') {
         $field_arr['ui'] = true;
+    }
+
+    if ($type == 'wysiwyg') {
+        $field_arr['media_upload'] = 0;
+        $field_arr['toolbar'] = 'basic';
     }
 
     if (!empty($options)) {

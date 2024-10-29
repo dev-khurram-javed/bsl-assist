@@ -1,0 +1,171 @@
+@use 'config' as *;
+
+@include block('listing-grid') {
+    position: relative;
+    overflow: hidden;
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: fluid(2.5rem, 5rem);
+        position: relative;
+        z-index: 2;
+
+        .header {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: fluid(20, 40);
+
+            @include media('>=tablet') {
+                grid-template-columns: 1fr fluid(260, 380, 'tablet');
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+
+            .search {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                align-items: center;
+                gap: rem(8);
+
+                @include media('>=tablet') {
+                    max-width: rem(380);
+                }
+
+                .field {
+                    display: grid;
+                    grid-template-columns: 1fr;
+
+                    input {
+                        border: 0;
+                        border-radius: 0;
+                        outline: none;
+                        font-size: rem(16);
+                        line-height: 1.4;
+
+                        &::placeholder,
+                        &.placeholder {
+                            font-size: rem(16);
+                            line-height: 1.4;
+                        }
+
+                        &:focus-visible {
+                            // box-shadow: 0 0 0.1rem 0.1rem fade-out($black, .75);
+
+                            +.line {
+                                visibility: hidden;
+                            }
+                        }
+                    }
+
+                    .line {
+                        height: rem(1);
+                        background: $black;
+                        opacity: 0.5;
+                    }
+                }
+
+                .submit {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    order: -1;
+
+                    svg {
+                        // @include composition-text('search-icon')
+                    }
+                }
+            }
+        }
+
+        .posts {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: fluid(20, 40);
+
+            @include media('>=tablet') {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .post {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: fluid(20, 40);
+
+                @include media('>=phone') {
+                    grid-template-columns: fluid(220, 260, 'phone') 1fr;
+                    align-items: center;
+                }
+
+                .component-image {
+                    width: 100%;
+                    height: fluid(320, 324);
+                    border-radius: rem(16);
+                    position: relative;
+                    overflow: hidden;
+
+                    .img {
+                        @include fit;
+                    }
+
+                    .link {
+                        text-indent: -99999px;
+                    }
+
+                    &.has-overlay::after {
+                        // @include composition('image-overline');
+                    }
+                }
+
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: fluid(20, 40);
+
+                    .infos {
+                        display: flex;
+                        flex-flow: row wrap;
+                        align-items: center;
+                        gap: fluid(14, 16);
+
+                        .category {
+                            padding: rem(10) rem(20);
+                            background: #000;
+                            border-radius: rem(16);
+
+                            strong {
+                                color: $white;
+                                font-size: fluid(14, 16);
+                                font-weight: 700;
+                                line-height: 1.2;
+                                text-transform: uppercase;
+                            }
+                        }
+
+                        .date {
+                            color: $black;
+                            font-size: fluid(14, 16);
+                            line-height: 1.2;
+                            text-transform: uppercase;
+                        }
+                    }
+
+                    .title {
+                        a {
+                            color: $black;
+                            font-size: fluid(16, 22);
+                            line-height: 1.2;
+                        }
+                    }
+
+                    .text {
+                        color: $black;
+                        font-size: rem(16);
+                        line-height: 1.4;
+                    }
+                }
+            }
+        }
+    }
+}

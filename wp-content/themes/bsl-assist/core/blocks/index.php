@@ -1,4 +1,5 @@
 <?php
+$block_classes = []; // Global Variable for dynamic block classes
 require_once 'register-blocks.php';
 
 // Load Blocks

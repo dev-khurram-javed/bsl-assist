@@ -47,6 +47,7 @@
         width: rem(1100);
         max-width: 100%;
         overflow-y: auto;
+        max-height: 100%;
     }
 
     &.style-default .modal-content {

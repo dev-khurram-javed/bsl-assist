@@ -23,7 +23,7 @@ function component($label, $data = [], $classes = '', $attrs = [], $render = tru
     }
 
     // Merge Data from Component
-    if (!empty($components[$label]['data'])) {
+    if (!empty($components[$label]['data']) && !empty($data)) {
         $data = array_merge($components[$label]['data'], $data);
     }
 

@@ -72,7 +72,7 @@ $fields = [
         ]
     ]),
     wp_acf_field('Posts', 'relationship', [
-        'post_type' => 'news',
+        'post_type' => 'bsl-news',
         'filters' => ['search', 'taxonomy'],
         'min' => 1,
         'max' => 3,

@@ -3,7 +3,7 @@
 function wp_register_custom_post_type ($label, $icon='images-alt2', $fields = [], $config = [], $disable_blocks = false) {
 
     $singular = convert_to_singular($label);
-    $slug = get_slug($singular);
+    $slug = (array_key_exists('slug', $config)) ? $config['slug'] : get_slug($singular);
     $textdomain = 'my-theme';
 
     $labels = array(

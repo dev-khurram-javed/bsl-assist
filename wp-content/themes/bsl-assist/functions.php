@@ -19,8 +19,8 @@ add_action( 'init', function() {
 
     require_once APP_PATH . '/custom-fields.php';
 
-    require_once CORE_PATH . '/blocks/index.php';
     require_once CORE_PATH . '/components/index.php';
+    require_once CORE_PATH . '/blocks/index.php';
     require_once CORE_PATH . '/taxonomies/index.php';
     require_once CORE_PATH . '/post-types/index.php';
     require_once CORE_PATH . '/option-pages/index.php';

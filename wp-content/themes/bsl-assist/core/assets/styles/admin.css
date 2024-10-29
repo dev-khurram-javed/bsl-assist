@@ -373,6 +373,10 @@ body .acf-fields>.acf-field--span-12 {
     grid-column: span 12;
 }
 
+body .acf-block-panel .acf-fields>.acf-field {
+    width: 100% !important;
+}
+
 /** Field Instructions */
 body .hammer-field-instructions {
     display: flex;

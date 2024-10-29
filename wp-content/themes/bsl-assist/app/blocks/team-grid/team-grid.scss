@@ -1,0 +1,228 @@
+@use 'config' as *;
+
+@include block('team-grid') {
+    .wrapper {
+        @include stack('v');
+
+        gap: fluid(20, 60);
+    }
+
+    .headline {
+        font-size: fluid(28, 65);
+        line-height: 1.1;
+        color: $dark;
+        text-align: center;
+    }
+
+    .team-members {
+        display: grid;
+        grid-template-columns: auto;
+        gap: fluid(30, 40);
+
+        @include media('>phone') {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .team-card {
+            .modal-wrapper {
+                @include stack('v');
+
+                gap: rem(24);
+                cursor: pointer;
+
+                .image {
+                    width: 100%;
+                    height: fluid(380, 580);
+                    border-radius: rem(16);
+
+                    @include media('>phone') {
+                        height: fluid(220, 440);
+                    }
+
+                    .img {
+                        @include fit;
+                    }
+                }
+
+                .info {
+                    @include stack('v');
+                    gap: rem(6);
+
+                    .name {
+                        font-size: fluid(22, 32);
+                        line-height: 1.1;
+                        font-weight: 700;
+                        color: $primary;
+                    }
+
+                    .title {
+                        @include line-clamp(2);
+
+                        font-size: rem(16);
+                        line-height: 1.2;
+                        color: $gray;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+
+        }
+
+        .modal {
+            .modal-close {
+                display: none;
+            }
+
+            .modal-content-wrapper {
+                border-radius: rem(16);
+
+                .modal-content {
+                    @include stack('v');
+
+                    background-color: $white;
+                    position: relative;
+                    border-radius: rem(16);
+                    overflow: hidden;
+
+                    @include media('>phone') {
+                        @include stack('>');
+
+                        max-height: rem(530);
+                    }
+                }
+
+                .btn-close {
+                    @include stack('>');
+
+                    position: absolute;
+                    right: rem(10);
+                    top: rem(10);
+                    align-items: center;
+                    justify-content: center;
+                    width: rem(32);
+                    height: rem(32);
+                    border: 1px solid $secondary;
+                    border-radius: rem(32);
+                    transition: all 0.2s ease-in;
+
+                    &:hover {
+                        background-color: $primary;
+
+                        svg {
+                            color: $white;
+                            fill: $white;
+                        }
+                    }
+
+                    svg {
+                        width: rem(16);
+                        color: $primary;
+                        fill: $primary;
+                        transition: all 0.2s ease-in;
+                    }
+                }
+
+                .image {
+                    width: 100%;
+                    height: rem(400);
+                    position: relative;
+
+                    @include media('>phone') {
+                        width: fluid(320, 400, 'phone');
+                        height: rem(530);
+                    }
+
+                    .img {
+                        @include fit;
+                    }
+                }
+
+                .info {
+                    @include stack('v');
+
+                    flex: 1;
+                    gap: rem(20);
+                    padding: fluid(20, 40);
+                    max-height: 100%;
+
+                    @include media('>phone') {
+                        position: relative;
+                        padding-top: rem(50);
+                    }
+
+                    .top-content {
+                        @include stack('v');
+
+                        gap: rem(10);
+                        justify-content: space-between;
+
+                        @include media('>phone') {
+                            @include stack('>');
+                        }
+
+                        .title-area {
+                            @include stack('v');
+
+                            gap: rem(6);
+
+                            @include media('>phone') {
+                                max-width: 60%;
+                            }
+
+                            .name {
+                                font-size: fluid(22, 26);
+                                font-weight: 700;
+                                color: $primary;
+                            }
+
+                            .title {
+                                font-size: rem(14);
+                                line-height: 1.2;
+                                color: $gray;
+                                text-transform: uppercase;
+                            }
+                        }
+
+                        .email {
+                            font-size: rem(16);
+                            color: $dark;
+                        }
+                    }
+
+                    .bio {
+                        @include stack('v');
+
+                        gap: fluid(12, 16);
+                        color: $black;
+
+                        @include media('>phone') {
+                            overflow-y: auto;
+                            height: 100%;
+                        }
+
+                        p {
+                            font-size: rem(16);
+                            line-height: 1.4;
+                        }
+
+                        &::-webkit-scrollbar {
+                            width: fluid(4, 6);
+                        }
+
+                        &::-webkit-scrollbar-thumb {
+                            background-color: $primary;
+                        }
+
+                        &::-webkit-scrollbar-track {
+                            background-color: #ddd;
+                        }
+
+                        &::-webkit-scrollbar-corner {
+                            background-color: $secondary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
