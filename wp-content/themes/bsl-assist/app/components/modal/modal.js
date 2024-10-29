@@ -51,7 +51,7 @@ window.coreTheme.components('modal', (el) => {
 
     // Detect triggers.
     document.body.addEventListener('click', (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         let target = e.target;
         const trigger = target.closest(`.js-modal-trigger[data-modal="${id}"]`);
