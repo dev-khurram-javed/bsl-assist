@@ -10,8 +10,8 @@ $acf_custom_fields = [];
 add_action( 'init', function() {
     require_once CORE_PATH . '/cleanup.php';
     require_once CORE_PATH . '/utils.php';
-    require_once CORE_PATH . '/render.php';
     require_once CORE_PATH . '/enqueue-assets.php';
+    require_once CORE_PATH . '/render.php';
     require_once CORE_PATH . '/admin.php';
     require_once CORE_PATH . '/acf/custom-acf-fields.php';
     require_once CORE_PATH . '/acf/assemble-acf-field.php';

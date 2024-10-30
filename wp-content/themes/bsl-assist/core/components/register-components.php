@@ -12,6 +12,9 @@ function wp_register_component ($label, $render, $default_data = []) {
 
     $components[$slug]['data'] = $default_data;
     $components[$slug]['render'] = $render;
+
+    // Enqueue Admin Assets
+    enqueue_component_scripts(get_slug($label), 'admin');
 }
 
 function component($label, $data = [], $classes = '', $attrs = [], $render = true) {
@@ -28,7 +31,7 @@ function component($label, $data = [], $classes = '', $attrs = [], $render = tru
     }
 
     // Enqueue Assets
-    enqueue_component_scripts($label);
+    enqueue_component_scripts(get_slug($label), 'frontend');
 
     // Convert to DOM
     $dom = convert_to_DOM($components[$label]['render'], $data);
@@ -112,7 +115,7 @@ function add_attrs($dom, $attrs) {
 }
 
 // Enqueue Component Scripts
-function enqueue_component_scripts($label) {
+function enqueue_component_scripts($label, $area = 'all') {
 
     if(!$label) return;
 
@@ -124,13 +127,17 @@ function enqueue_component_scripts($label) {
     $css_src = PUBLIC_SRC . $comp_css;
 
     if (file_exists($css_path)) {
-        if (!wp_style_is($handle)) {
-            wp_enqueue_style( $handle, $css_src, [] );
+        if ($area == 'all' || $area == 'frontend') {
+            if (!wp_style_is($handle)) {
+                wp_enqueue_style( $handle, $css_src, [] );
+            }
         }
 
-        add_action( 'admin_enqueue_scripts', function() use($handle, $css_src) {
-            wp_enqueue_style( $handle . '-admin', $css_src, [] );
-        });
+        if ($area == 'all' || $area == 'admin') {
+            add_action( 'admin_enqueue_scripts', function() use($handle, $css_src) {
+                wp_enqueue_style( $handle . '-admin', $css_src, [] );
+            });
+        }
     }
 
     $comp_js = '/scripts/components/' . $label . '.js';
@@ -138,12 +145,16 @@ function enqueue_component_scripts($label) {
     $js_src = PUBLIC_SRC . $comp_js;
 
     if (file_exists($js_path)) {
-        if (!wp_script_is($handle)) {
-            wp_enqueue_script( $handle, $js_src, [], '', true );
+        if ($area == 'all' || $area == 'frontend') {
+            if (!wp_script_is($handle)) {
+                wp_enqueue_script( $handle, $js_src, [], '', true );
+            }
         }
 
-        add_action( 'admin_enqueue_scripts', function() use($handle, $js_src) {
-            wp_enqueue_script( $handle . '-admin', $js_src, [], '', true );
-        });
+        if ($area == 'all' || $area == 'admin') {
+            add_action( 'admin_enqueue_scripts', function() use($handle, $js_src) {
+                wp_enqueue_script( $handle . '-admin', $js_src, [], '', true );
+            });
+        }
     }
 }
