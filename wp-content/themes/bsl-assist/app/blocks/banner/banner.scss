@@ -26,7 +26,7 @@
         position: relative;
         z-index: 2;
         justify-content: center;
-        min-height: rem(320);
+        min-height: fluid(160, 320);
 
         @include stack('v');
 

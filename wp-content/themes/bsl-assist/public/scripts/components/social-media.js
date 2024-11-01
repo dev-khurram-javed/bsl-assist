@@ -1,0 +1,2 @@
+window.coreTheme.components("social-media",(e=>{if(!e.classList.contains("is-popup"))return;const o=["height=450,","width=550,",`top=${screen.height/2-225},`,`left=${screen.width/2-275},`,"toolbar=0,","location=0,","menubar=0,","directories=0,","scrollbars=0"];e.querySelectorAll(".item").forEach((e=>e.addEventListener("click",(i=>{i.preventDefault(),window.open(e.href,"shareWindow",o.join(","))}))))}));
+//# sourceMappingURL=social-media.js.map

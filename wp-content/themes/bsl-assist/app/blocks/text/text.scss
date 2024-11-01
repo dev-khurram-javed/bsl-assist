@@ -1,0 +1,8 @@
+@use 'config' as *;
+
+@include block('text') {
+    .wrapper {
+        font-size: fluid(16, 20);
+        line-height: 1.4;
+    }
+}

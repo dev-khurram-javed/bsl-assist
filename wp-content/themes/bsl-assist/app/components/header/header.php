@@ -133,8 +133,30 @@ wp_register_component('Header', function($data) {
             role="menu"
             aria-expanded="false"
             aria-labelledby="mobile-menu-toggler">
-
+            
             <div class="wrapper">
+                <div class="header-top">
+                    <div class="info">
+                        <?php if ($phone): ?>
+                            <span class="phone link">
+                                <span class="icon"><?php print_svg('phone'); ?></span>
+                                <a href="tel:<?= $phone; ?>"><?= $phone; ?></a>
+                            </span>
+                        <?php endif; ?>
+                        <?php if ($wapp): ?>
+                            <span class="wapp link">
+                                <span class="icon"><?php print_svg('whatsapp'); ?></span>
+                                <a href="tel:<?= $wapp; ?>"><?= $wapp; ?></a>
+                            </span>
+                        <?php endif; ?>
+                        <?php if ($email): ?>
+                            <span class="email link">
+                                <span class="icon"><?php print_svg('email'); ?></span>
+                                <a href="mailto:<?= $email; ?>"><?= $email; ?></a>
+                            </span>
+                        <?php endif; ?>
+                    </div>
+                </div>
                 <?php 
                     if (!empty($menu_items)): 
                         if (!empty($add_link)) {

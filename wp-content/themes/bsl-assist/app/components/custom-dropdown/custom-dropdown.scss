@@ -1,0 +1,100 @@
+@use 'config' as *;
+
+@include component('custom-dropdown') {
+
+    display: grid;
+    grid-template-columns: 1fr;
+    position: relative;
+    gap: rem(10);
+
+    .dropdown-label {
+        display: block;
+        font-size: fluid(18, 22);
+        line-height: 1.2;
+        font-weight: 700;
+        color: $dark;
+    }
+
+    .dropdown-wrap {
+        position: relative;
+
+        @include media('>=phone') {
+            max-width: rem(410);
+            min-width: fluid(200, 360);
+        }
+    }
+
+    .toggler {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        appearance: none;
+        width: 100%;
+        border: none;
+        border-radius: rem(3);
+        outline: none;
+        cursor: pointer;
+        gap: rem(18);
+        padding: fluid(10, 14) fluid(10, 18);
+        background-color: $accent;
+
+        .title {
+            font-size: rem(16);
+            line-height: 1.2;
+            color: $dark;
+            display: inline-block;
+            vertical-align: middle;
+            margin-bottom: -3px;
+        }
+
+        .icon-arrow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                width: fluid(10, 20);
+                height: auto;
+                color: $secondary;
+                fill: $secondary;
+            }
+        }
+    }
+
+    .options {
+        padding: fluid(14, 18);
+        gap: fluid(14, 18);
+        background: #f8f8f8;
+        display: grid;
+        grid-template-columns: 1fr;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 20;
+        overflow-y: auto;
+        min-width: 100%;
+        max-height: rem(300);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.25s ease-in, visibility 0.25s ease-in;
+
+        .option {
+            display: block;
+            font-size: rem(16);
+            line-height: 1.2;
+            opacity: 0.5;
+            color: $dark;
+            transition: opacity 0.25s ease-in;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    .toggler:focus+.options,
+    .options:hover {
+        opacity: 1;
+        visibility: visible;
+    }
+}

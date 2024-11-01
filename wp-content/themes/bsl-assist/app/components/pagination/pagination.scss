@@ -1,0 +1,39 @@
+@use 'config' as *;
+
+@include component('pagination') {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(10);
+
+    span,
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fluid(40, 50);
+        height: fluid(40, 50);
+        background-color: $accent;
+        border-radius: 50%;
+        transition: 0.2s ease-in all;
+        color: $primary;
+    }
+
+    a {
+        &.prev {
+            transform: rotate(180deg);
+        }
+
+        &:hover {
+            background-color: $primary;
+            color: $white;
+        }
+    }
+
+    span {
+        &.current {
+            background-color: $primary;
+            color: $white;
+        }
+    }
+}

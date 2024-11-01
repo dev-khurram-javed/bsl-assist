@@ -8,17 +8,22 @@ function wp_register_component ($label, $render, $default_data = []) {
 
     if (array_key_exists($label, $components)) {echo 'Component already Exists'; return;}
 
-    $slug = get_slug($label, '_');
+    $slug = get_slug($label);
 
     $components[$slug]['data'] = $default_data;
     $components[$slug]['render'] = $render;
 
     // Enqueue Admin Assets
-    enqueue_component_scripts(get_slug($label), 'admin');
+    enqueue_component_scripts($slug, 'admin');
 }
 
 function component($label, $data = [], $classes = '', $attrs = [], $render = true) {
     global $components;
+
+    if (!array_key_exists($label, $components)) {
+        echo 'Component Doesn\'t Exists'; 
+        return;
+    }
 
     if (!is_callable($components[$label]['render'])) {
         // If the callback is not callable, return null.
@@ -26,12 +31,14 @@ function component($label, $data = [], $classes = '', $attrs = [], $render = tru
     }
 
     // Merge Data from Component
-    if (!empty($components[$label]['data']) && !empty($data)) {
+    if (!empty($components[$label]['data'] && !empty($data))) {
         $data = array_merge($components[$label]['data'], $data);
+    } else {
+        $data = $components[$label]['data'];
     }
 
     // Enqueue Assets
-    enqueue_component_scripts(get_slug($label), 'frontend');
+    enqueue_component_scripts($label, 'frontend');
 
     // Convert to DOM
     $dom = convert_to_DOM($components[$label]['render'], $data);
