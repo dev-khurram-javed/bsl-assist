@@ -39,6 +39,7 @@ body.scroll-lock {
                 gap: rem(10);
                 align-items: center;
                 font-size: rem(14);
+                font-weight: 700;
                 line-height: 1.1;
 
                 a {
@@ -97,7 +98,8 @@ body.scroll-lock {
                 &:hover {
                     .nav-item-link {
                         .icon {
-                            background-color: $primary;
+                            background-color: $orange;
+                            border-color: $orange;
 
                             svg {
                                 color: $white;
@@ -205,7 +207,8 @@ body.scroll-lock {
 
             &:hover {
                 .icon {
-                    background-color: $primary;
+                    background-color: $orange;
+                    border-color: $orange;
 
                     svg {
                         color: $white;

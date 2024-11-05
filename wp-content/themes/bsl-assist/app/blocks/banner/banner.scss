@@ -38,8 +38,9 @@
         }
 
         .headline {
-            font-size: fluid(32, 65);
+            font-size: fluid(32, 62);
             line-height: 1;
+            letter-spacing: -1px;
             color: $white;
         }
 
