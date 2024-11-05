@@ -59,27 +59,36 @@
 
             $filters[$tax->name]['label'] = $tax->label;
         }
+
+        $show_filters = (get_field('show_filters') !== null) ? get_field('show_filters') : true;
+        $show_search = (get_field('show_search') !== null) ? get_field('show_search') : true;
 ?>
     <div class="wrapper">
-        <div class="header">
-            <form class="search">
-                <input type="hidden" name="paged" value="1"/><!-- Important to reset the pagination -->
-                <div class="field">
-                    <label class="sr-only" for="search_term">Use the search below to filter results.</label>
-                    <input type="search" id="search_term" name="search_term" placeholder="Search ..." value="<?= $_GET['search_term'] ?? '' ?>"/>
-                    <span class="line" aria-hidden="true"></span>
-                </div>
-                <button type="submit" class="submit" aria-label="Submit search">
-                    <?php print_svg('search'); ?>
-                </button>
-            </form>
-            <?php 
-                foreach ($filters as $key => $filter) {
-                    $filter['placeholder_link'] = home_url('news');
-                    component('custom-dropdown', $filter);
-                }
-            ?>
-        </div>
+        <?php if ($show_filters || $show_search) : ?>
+            <div class="header">
+                <?php if ($show_search) : ?>
+                    <form class="search">
+                        <input type="hidden" name="paged" value="1"/><!-- Important to reset the pagination -->
+                        <div class="field">
+                            <label class="sr-only" for="search_term">Use the search below to filter results.</label>
+                            <input type="search" id="search_term" name="search_term" placeholder="Search ..." value="<?= $_GET['search_term'] ?? '' ?>"/>
+                            <span class="line" aria-hidden="true"></span>
+                        </div>
+                        <button type="submit" class="submit" aria-label="Submit search">
+                            <?php print_svg('search'); ?>
+                        </button>
+                    </form>
+                <?php endif; ?>
+                <?php 
+                    if ($show_filters) {
+                        foreach ($filters as $key => $filter) {
+                            $filter['placeholder_link'] = home_url('news');
+                            component('custom-dropdown', $filter);
+                        }
+                    }
+                ?>
+            </div>
+        <?php endif; ?>
         <div class="posts">
             <?php
                 foreach ($posts as $post) :
@@ -158,6 +167,12 @@ $fields = [
             'ID' => 'ID'
         ]
     ], '33.33%'),
+    wp_acf_field('Show Search', 'true_false', [
+        'default_value' => true
+    ], '25%'), 
+    wp_acf_field('Show Filters', 'true_false', [
+        'default_value' => true
+    ], '25%'), 
     wp_acf_field('Show Post Image', 'true_false', [
         'ref' => 'show_image',
         'default_value' => true
