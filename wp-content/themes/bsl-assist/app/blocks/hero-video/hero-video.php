@@ -14,7 +14,7 @@
                 </div>
             <?php endif; ?>
             <div class="content">
-                <div class="title-area">
+                <div class="title-area appear--fade-in-up" data-appear="20">
                     <?php component('headline', get_field('title')) ?>
                     <?php 
                         $btn = get_field('button');
@@ -24,8 +24,8 @@
                     ?>
                 </div>
                 <div class="video-area">
-                    <?php component('video', get_field('video')) ?>
-                    <div class="text">
+                    <?php component('video', get_field('video'), 'appear--fade-in-up', ['data-appear' => '20']) ?>
+                    <div class="text appear--fade-in-up" data-appear="20">
                         <?= get_field('text') ?>
                     </div>
                 </div>

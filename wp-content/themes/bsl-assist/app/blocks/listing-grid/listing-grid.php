@@ -109,28 +109,30 @@
                                     'title' => $post->post_title
                                 ],
                                 'max_size' => 'full'
-                            ]);
+                            ], 'appear--zoom-in', ['data-appear' => '20']);
                         endif
                     ?>
                     <div class="content">
                         <?php if (get_field('show_category') || get_field('show_date')) : ?>
                             <div class="infos">
                                 <?php if (isset($terms) && $terms && get_field('show_category')) : ?>
-                                    <span class="category"><strong><?= $terms[0]->name; ?></strong></span>
+                                    <span class="category appear--fade-in" data-appear="20"><strong><?= $terms[0]->name; ?></strong></span>
                                 <?php endif ?>
                                 <?php if (get_field('show_date')) : ?>
-                                    <span class="date">Published on <?= date('M j, Y', strtotime($post->post_date)); ?></span>
+                                    <span class="date appear--fade-in" data-appear="20">Published on <?= date('M j, Y', strtotime($post->post_date)); ?></span>
                                 <?php endif ?>
                             </div>
                         <?php endif ?>
 
-                        <h3 class="title">
+                        <h3 class="title appear--fade-in-up" data-appear="20">
                             <a href="<?= get_the_permalink($post_id); ?>"><?= $post->post_title ?></a>
                         </h3>
 
                         <?php if ($post->post_excerpt && get_field('show_excerpt')) : ?>
-                            <p class="text"><?= $post->post_excerpt; ?></p>
+                            <p class="text appear--fade-in-up" data-appear="20"><?= $post->post_excerpt; ?></p>
                         <?php endif ?>
+
+                        <?php component('button', ['link' => ['url' => '#', 'title' => 'Read More'], 'icon' => 'arrow'], 'appear--fade-in-up', ['data-appear' => '20']); ?>
                     </div>
                 </article>
             <?php endforeach; ?>

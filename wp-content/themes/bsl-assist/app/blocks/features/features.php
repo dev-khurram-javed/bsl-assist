@@ -3,13 +3,13 @@
 ?>
     <div class="wrapper">
         <?php if (get_field('heading')) : ?>
-            <div class="heading">
+            <div class="heading appear--fade-in" data-appear="10">
                 <?php component('headline', get_field('heading')) ?>
                 <hr class="line">
             </div>
         <?php endif; ?>
         <?php if (get_field('features')) : ?>
-            <div class="feats">
+            <div class="feats appear--fade-in" data-appear="20">
                 <?php 
                     foreach (get_field('features') as $key => $feat) : 
                         $icon = (!empty($feat['icon'])) ? '<span class="icon">' . print_svg($feat['icon'], false) . '</span>' : '';

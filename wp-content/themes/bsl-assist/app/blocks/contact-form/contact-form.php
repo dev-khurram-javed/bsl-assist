@@ -8,10 +8,10 @@
         <?php
             if (!empty($img)) { 
                 $img['max_size'] = 'full'; 
-                component('image', $img);
+                component('image', $img, 'appear--zoom-in', ['data-appear' => '20']);
             }
         ?>
-        <div class="form-area">
+        <div class="form-area appear--fade-in" data-appear="20">
             <?php
                 if(!empty(get_field('heading'))) component('headline', get_field('heading'));
                 component('form', ['form_id' => $form['variation'], 'button_label' => $form['button_label']]) 

@@ -19,7 +19,7 @@
         }
 ?>
     <div class="wrapper">
-        <div class="title-area">
+        <div class="title-area appear--fade-in-up" data-appear="10">
             <?php if (!empty(get_field('heading'))) component('headline', get_field('heading')); ?>
             <?php if (!empty(get_field('cta'))) component('button', get_field('cta')); ?>
         </div>
@@ -35,16 +35,16 @@
                     $date = get_the_date( 'm.d.y', $post );
             ?>
                 <div class="post-item">
-                    <?php if ($image) component('image', $image); ?>
+                    <?php if ($image) component('image', $image, 'appear--zoom-in', ['data-appear' => '20']); ?>
                     <div class="content">
-                        <div class="post-title">
+                        <div class="post-title appear--fade-in-up" data-appear="20">
                             <div class="meta">
                                 <span class="cat"><?= $cats[0]->name; ?></span>
                                 <time class="date" datetime="<?= $date ?>"><?= $date ?></time>
                             </div>
                             <h3 class="title"><a href="<?= $link; ?>"><?= $title; ?></a></h3>
                         </div>
-                        <?php component('button', ['link' => $cta, 'icon' => 'arrow']); ?>
+                        <?php component('button', ['link' => $cta, 'icon' => 'arrow'], 'appear--fade-in-up' , ['data-appear' => '20']); ?>
                     </div>
                 </div>
             <?php endforeach ?>

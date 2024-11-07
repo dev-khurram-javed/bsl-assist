@@ -56,6 +56,10 @@
 
                 .info {
                     color: $dark;
+
+                    a {
+                        color: inherit;
+                    }
                 }
             }
         }

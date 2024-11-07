@@ -17,7 +17,7 @@
             <?php if (get_field('share_post')) : ?>
                 <div class="share-post">
                     <?php if (get_field('share_label')): ?>
-                        <strong class="label"><?= get_field('share_label'); ?></strong>
+                        <strong class="label appear--fade-in-up" data-appear="20"><?= get_field('share_label'); ?></strong>
                     <?php endif ?>
                     <?php
                         component('social-media', [
@@ -39,11 +39,11 @@
                                     'title' => 'facebook'
                                 ],
                             ]
-                        ]);
+                        ], 'appear--fade-in-up', ['data-appear'=>'20']);
                     ?>
                 </div>
             <?php endif ?>
-            <div class="info">
+            <div class="info appear--fade-in-up" data-appear="20">
                 <?php if (isset($terms) && $terms) : ?>
                     <div class="cats">
                         <?php foreach ($terms as $key => $term) : ?>
@@ -53,9 +53,9 @@
                 <?php endif; ?>
                 <span class="date">Published on <?= get_the_date( 'M j, Y', $post_id ); ?></span>
             </div>
-            <h1 class="title"><?= $post_title ?></h1>
+            <h1 class="title appear--fade-in-up" data-appear="20"><?= $post_title ?></h1>
         </div>
-        <?php component('image', $post_img); ?>
+        <?php component('image', $post_img, 'appear--zoom-in', ['data-appear'=>'20']); ?>
     </div>
 <?php
 };

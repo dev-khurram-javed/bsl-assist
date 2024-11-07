@@ -11,10 +11,10 @@
                 ?>
                     <div class="team-card">
                         <div class="modal-wrapper js-modal-trigger" data-modal="<?= $modal_id ?>">
-                            <?php component('image', $member['image']); ?>
+                            <?php component('image', $member['image'], 'appear--zoom-in', ['data-appear' => '20']); ?>
                             <div class="info">
-                                <h3 class="name"><?= $member['name']; ?></h3>
-                                <span class="title"><?= $member['title']; ?></span>
+                                <h3 class="name appear--fade-in-up" data-appear="20"><?= $member['name']; ?></h3>
+                                <span class="title appear--fade-in-up" data-appear="20"><?= $member['title']; ?></span>
                             </div>
                         </div>
                         

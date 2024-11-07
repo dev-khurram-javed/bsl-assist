@@ -1,0 +1,9 @@
+$normal: 250ms;
+$smooth: 500ms;
+$slow: 1s;
+
+$ease-stn: cubic-bezier(0.4, 0, 0.2, 1); // Standard easing.
+$ease-emp: cubic-bezier(0.3, 0, 0, 1); // Emphasized easing.
+$ease-smt: cubic-bezier(0.6, 0, 0, 1); // Super smooth easing.
+$ease-dec: cubic-bezier(0, 0, 0.2, 1); // Decelerated easing (when entering).
+$ease-acc: cubic-bezier(0.4, 0, 1, 1); // Accelerated easing (when exiting).

@@ -57,7 +57,7 @@
 
 ?>
     <div class="wrapper">
-        <div class="title-area">
+        <div class="title-area appear--fade-in-up" data-appear="20">
             <?php component('headline', get_field('heading')); ?>
             <div class="swiper-controls">
                 <button class="prev js-prev"><?php print_svg('arrow-slider') ?></button>
@@ -70,14 +70,16 @@
                 <div class="swiper-wrapper">
                     <?php foreach ($items as $key => $item) : ?>
                         <div class="swiper-slide slide">
-                            <div class="content">
+                            <div class="content appear--fade-in" data-appear="20">
                                 <h3 class="title"><?= $item['heading']; ?></h3>
-                                <div class="desc">
-                                    <p><?= $item['text']; ?></p>
-                                </div>
+                                <?php if ($item['text']) : ?>
+                                    <div class="desc">
+                                        <p><?= $item['text']; ?></p>
+                                    </div>
+                                <?php endif; ?>
                                 <?php component('button', ['link' => $item['cta']]); ?>
                             </div>
-                            <div class="img-wrap">
+                            <div class="img-wrap appear--zoom-in" data-appear="20">
                                 <?php component('image', $item['image']); ?>
                             </div>
                         </div>

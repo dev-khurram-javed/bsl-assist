@@ -6,7 +6,7 @@
         add_block_class('bg-' . $bg_style, 'text-image');
 ?>
     <div class="wrapper <?= 'img-' . $img_pos; ?>">
-        <div class="content">
+        <div class="content appear--fade-in-up" data-appear="20">
             <?php component('headline', get_field('title')); ?>
             <div class="desc">
                 <?= get_field('description'); ?>
@@ -14,7 +14,7 @@
             <?php component('button', get_field('button')); ?>
         </div>
         <?php if (get_field('image')) : ?>
-            <div class="img-wrap">
+            <div class="img-wrap appear--zoom-in" data-appear="20">
                 <?php
                     $img = get_field('image');
                     $img['max_size'] = 'medium';

@@ -9,7 +9,7 @@
         </div>
     <?php endif; ?>
     <div class="wrapper">
-        <div class="content">
+        <div class="content appear--fade-in-up" data-appear="20">
             <?php 
                 component('headline', get_field('title'));  
 

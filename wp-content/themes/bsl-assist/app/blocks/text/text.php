@@ -2,7 +2,7 @@
     $render = function ($data) {
 ?>
     <div class="wrapper">
-        <?php component('rich-text', ['text' => get_field('content')]); ?>
+        <?php component('rich-text', ['text' => get_field('content')], 'appear--fade-in-up', ['data-appear'=>'20']); ?>
     </div>
 <?php
 };

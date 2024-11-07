@@ -4,11 +4,15 @@
 function theme_core_scripts() {
     $core_scripts_path = PUBLIC_PATH . '/scripts/core-theme.js';
     $core_scripts_src = PUBLIC_SRC . '/scripts/core-theme.js';
-    wp_enqueue_script('core-theme-script', $core_scripts_src, array(), filemtime($core_scripts_path), false);
+    $is_footer = false;
 
     if (!is_admin()) {
         wp_enqueue_style( 'app-styles', get_template_directory_uri() . '/public/styles/app.css', [] );
+        $is_footer = true;
     }
+
+    wp_enqueue_script('core-theme-script', $core_scripts_src, array(), filemtime($core_scripts_path), $is_footer);
+
 }
 
 add_action( 'admin_init', 'theme_core_scripts', 1 );

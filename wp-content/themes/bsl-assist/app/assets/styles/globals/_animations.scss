@@ -1,0 +1,31 @@
+@use '../config/transitions';
+
+body:not(.wp-admin) {
+    .appear {
+        &--fade-in {
+            transition: opacity 500ms;
+
+            &:not(.animate-appear) {
+                opacity: 0;
+            }
+        }
+
+        &--fade-in-up {
+            transition: opacity 500ms, transform 500ms transitions.$ease-stn;
+
+            &:not(.animate-appear) {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+        }
+
+        &--zoom-in {
+            transition: opacity 500ms, transform 500ms transitions.$ease-stn;
+
+            &:not(.animate-appear) {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+        }
+    }
+}

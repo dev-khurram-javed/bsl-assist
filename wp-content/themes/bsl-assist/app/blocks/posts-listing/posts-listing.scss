@@ -44,8 +44,15 @@
                     height: fluid(160, 280, 'phone');
                 }
 
+                &:hover {
+                    .img {
+                        transform: scale(1.1);
+                    }
+                }
+
                 .img {
                     @include fit;
+                    transition: 0.25s ease-in all;
                 }
             }
 
