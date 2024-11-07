@@ -11,6 +11,36 @@
         font-weight: 700;
     }
 
+    h1 {
+        @include type('heading-1');
+        color: $primary;
+    }
+
+    h2 {
+        @include type('heading-2');
+        color: $primary;
+    }
+
+    h3 {
+        @include type('heading-3');
+        color: $primary;
+    }
+
+    h4 {
+        @include type('heading-4');
+        color: $primary;
+    }
+
+    h5 {
+        @include type('heading-5');
+        color: $primary;
+    }
+
+    h6 {
+        @include type('heading-6');
+        color: $primary;
+    }
+
     h2,
     h3,
     h4,
