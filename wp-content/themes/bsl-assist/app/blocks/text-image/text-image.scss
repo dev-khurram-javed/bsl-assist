@@ -30,6 +30,7 @@
         @include stack('v');
 
         gap: fluid(15, 40);
+        flex: 1;
 
         .button {
             display: inline-flex;
@@ -40,16 +41,10 @@
             color: $dark;
         }
 
-        .desc {
-            @include stack('v');
-
-            gap: rem(16);
-
-            p {
-                font-size: fluid(16, 20);
-                line-height: 1.3;
-                color: $dark;
-            }
+        .rich-text {
+            font-size: fluid(16, 20);
+            line-height: 1.3;
+            color: $dark;
         }
     }
 

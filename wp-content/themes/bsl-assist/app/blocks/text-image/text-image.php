@@ -8,9 +8,10 @@
     <div class="wrapper <?= 'img-' . $img_pos; ?>">
         <div class="content appear--fade-in-up" data-appear="20">
             <?php component('headline', get_field('title')); ?>
-            <div class="desc">
-                <?= get_field('description'); ?>
-            </div>
+            <!-- <div class="desc">
+                <?php // get_field('description'); ?>
+            </div> -->
+            <?php component('rich-text', ['text' => get_field('description')]); ?>
             <?php component('button', get_field('button')); ?>
         </div>
         <?php if (get_field('image')) : ?>
