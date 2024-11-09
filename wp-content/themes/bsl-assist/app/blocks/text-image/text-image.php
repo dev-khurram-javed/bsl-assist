@@ -7,12 +7,11 @@
 ?>
     <div class="wrapper <?= 'img-' . $img_pos; ?>">
         <div class="content appear--fade-in-up" data-appear="20">
-            <?php component('headline', get_field('title')); ?>
-            <!-- <div class="desc">
-                <?php // get_field('description'); ?>
-            </div> -->
-            <?php component('rich-text', ['text' => get_field('description')]); ?>
-            <?php component('button', get_field('button')); ?>
+            <?php 
+                component('headline', get_field('title'));  
+                component('rich-text', ['text' => get_field('description')]);
+                component('button', get_field('button')); 
+            ?>
         </div>
         <?php if (get_field('image')) : ?>
             <div class="img-wrap appear--zoom-in" data-appear="20">

@@ -1,2 +1,2 @@
-window.coreTheme.blocks("services-slider",(e=>{const r=e.querySelector(".slider-carousel");r&&new window.packages.swiper(r,{autoplay:!0,navigation:{prevEl:e.querySelector(".js-prev"),nextEl:e.querySelector(".js-next")}})}));
+window.coreTheme.blocks("services-slider",(e=>{const r=e.querySelector(".slider-carousel");r&&new window.packages.swiper(r,{autoplay:!0,speed:900,navigation:{prevEl:e.querySelector(".js-prev"),nextEl:e.querySelector(".js-next")}})}));
 //# sourceMappingURL=services-slider.js.map
