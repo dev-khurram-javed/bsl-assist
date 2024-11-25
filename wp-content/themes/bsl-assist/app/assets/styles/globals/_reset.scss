@@ -20,6 +20,53 @@
 }
 
 // Front-end body + admin editor "body"
+body:not(.wp-admin) {
+    overflow: hidden;
+
+    .is-root-container {
+        opacity: 0 !important;
+        transition: 0.2s 0.3s ease-in all;
+    }
+
+    .loading {
+        @include fit;
+        @include stack('>');
+
+        gap: rem(10);
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: $accent;
+        transition: 0.2s 0.3s ease-in all;
+        opacity: 1 !important;
+
+        .title {
+            display: block;
+            font-size: fluid(20, 28);
+            font-weight: 400;
+            color: $dark;
+        }
+
+        svg {
+            width: fluid(32, 48);
+            height: fluid(32, 48);
+            color: $accent;
+        }
+    }
+
+    &.site-loaded {
+        overflow: unset;
+
+        .is-root-container {
+            opacity: 1 !important;
+        }
+
+        .loading {
+            opacity: 0 !important;
+        }
+    }
+}
+
 body:not(.wp-admin),
 .editor-styles-wrapper {
     @include type('text-base');

@@ -1,3 +1,7 @@
+window.addEventListener('load', () => {
+    document.querySelector('body').classList.add('site-loaded');
+});
+
 const blocks = (name, callback) => {
     const instances = document.querySelectorAll(`[data-block="${name}"]`);
     instances.forEach(i => {

@@ -14,6 +14,10 @@
 	<body <?php body_class(); ?>>
 		<!-- No Script -->
 		<noscript><div>Javascript must be enabled for the correct page display</div></noscript>
+        <div class="loading">
+            <?php print_svg('loader') ?>
+            <strong class="title">Loading ...</strong>
+        </div>
 		<!-- Wrapper Starts -->
 		<div id="root" class="is-root-container">
 			<!-- Header Starts -->
