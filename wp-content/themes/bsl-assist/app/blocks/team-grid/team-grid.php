@@ -16,6 +16,13 @@
                                 <h3 class="name appear--fade-in-up" data-appear="20"><?= $member['name']; ?></h3>
                                 <span class="title appear--fade-in-up" data-appear="20"><?= $member['title']; ?></span>
                             </div>
+                            <?php 
+                                component('button', [
+                                    'type' => 'button', 
+                                    'link' => ['title' => 'Read More'], 
+                                    'icon' => 'arrow'
+                                ]);
+                            ?>
                         </div>
                         
                         <?php

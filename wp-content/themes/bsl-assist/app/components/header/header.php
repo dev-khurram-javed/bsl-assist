@@ -180,9 +180,9 @@ wp_register_component('Header', function($data) {
                                         <?= $menu_icon; ?>
                                         <span class="text"><?= $item['title']; ?></span>
                                     </a>
-                                    <span class="icon-toggle">
-                                        <?php print_svg('arrow-slider') ?>
-                                    </span>
+                                    <?php if ($children) : ?>
+                                        <span class="icon-toggle"><?php print_svg('arrow-slider') ?></span>
+                                    <?php endif;  ?>
                                 </div>
 
                                 <?php if ($children) : ?>

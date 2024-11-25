@@ -28,12 +28,14 @@
                 @include stack('v');
 
                 gap: rem(24);
+                align-items: flex-start;
                 cursor: pointer;
 
                 .image {
                     width: 100%;
                     height: fluid(380, 580);
                     border-radius: rem(16);
+                    overflow: hidden;
 
                     @include media('>phone') {
                         height: fluid(220, 440);
@@ -41,6 +43,14 @@
 
                     .img {
                         @include fit;
+
+                        transition: 0.2s ease-in all;
+                    }
+
+                    &:hover {
+                        .img {
+                            transform: scale(1.1);
+                        }
                     }
                 }
 
@@ -65,7 +75,6 @@
                     }
                 }
             }
-
         }
 
         .modal {

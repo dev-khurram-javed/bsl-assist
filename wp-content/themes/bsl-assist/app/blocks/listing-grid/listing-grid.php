@@ -132,7 +132,15 @@
                             <p class="text appear--fade-in-up" data-appear="20"><?= $post->post_excerpt; ?></p>
                         <?php endif ?>
 
-                        <?php component('button', ['link' => ['url' => '#', 'title' => 'Read More'], 'icon' => 'arrow'], 'appear--fade-in-up', ['data-appear' => '20']); ?>
+                        <?php 
+                            component('button', [
+                                'link' => [
+                                    'url' => get_the_permalink($post_id), 
+                                    'title' => 'Read More'
+                                ], 
+                                'icon' => 'arrow'
+                            ], 'appear--fade-in-up', ['data-appear' => '20']); 
+                        ?>
                     </div>
                 </article>
             <?php endforeach; ?>

@@ -39,7 +39,9 @@ $fields = [
     wp_acf_field('Title', 'headline', [
         'required' => 1
     ]),
-    wp_acf_field('Text', 'textarea'),
+    wp_acf_field('Text', 'textarea', [
+        'new_lines' => 'br'
+    ]),
     wp_acf_field('Button', 'button')
 ];
 
