@@ -3,7 +3,7 @@
         $posts = '';
         if (get_field('query_type') == 'auto') {
             $query_args = array (
-				'post_type' => 'post',
+				'post_type' => 'bsl-news',
 				'posts_per_page' => 3
 			);
 
