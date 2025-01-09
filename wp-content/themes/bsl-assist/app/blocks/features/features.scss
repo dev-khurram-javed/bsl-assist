@@ -1,7 +1,7 @@
 @use 'config' as *;
 
 @include block('features') {
-    background-color: $primary;
+    background-color: $accent;
 
     .wrapper,
     .heading {
@@ -13,14 +13,14 @@
     .headline {
         font-size: fluid(32, 72);
         font-weight: 700;
-        color: $white;
+        color: $dark;
         text-align: center;
     }
 
     .line {
         width: 100%;
         height: 1px;
-        background-color: $white;
+        background-color: $dark;
         margin: 0;
         border: 0;
         display: block;
