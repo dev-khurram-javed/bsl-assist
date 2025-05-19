@@ -31,7 +31,7 @@ window.packages = { swiper: Swiper };
 const appearElements = [];
 
 // Store the main elements.
-console.log(document.querySelectorAll('[data-appear]'));
+// console.log(document.querySelectorAll('[data-appear]'));
 document.querySelectorAll('[data-appear]').forEach(parentEl => {
     const { appear: threshold } = parentEl.dataset;
     const parent = {
