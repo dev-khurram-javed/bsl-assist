@@ -20,11 +20,11 @@ jobs:
 
       - name: Test SSH Connection (No Passphrase)
         run: |
-          ssh -o StrictHostKeyChecking=no -p 18765 u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com \
+          ssh -o StrictHostKeyChecking=no -p 18765 u1034-ybifkcyw3x5g@ssh.bsl-assist.co.uk \
           'echo "SSH connection successful!"' || { echo "SSH connection failed"; exit 1; }
 
       - name: Deploy files via rsync
         run: |
           rsync -avz \
           -e "ssh -p 18765 -o StrictHostKeyChecking=no" \
-          ./ u2709-o8dmz8qkmjz9@ssh.andyc175.sg-host.com:/home/customer/www/andyc175.sg-host.com/public_html/ || { echo "Rsync failed"; exit 1; }
+          ./ u1034-ybifkcyw3x5g@ssh.bsl-assist.co.uk:/home/customer/www/bsl-assist.co.uk/public_html/ || { echo "Rsync failed"; exit 1; }
